@@ -41,7 +41,6 @@ public class AdminController {
 	@RequestMapping("/adReport")
 	public String rlist(Criteria cri, Model model) {
 		log.info("@# ad_report");
-		log.info("@# cri ====>"+cri);
 		
 		model.addAttribute("rlist", service.rList(cri));
 		int total = service.reportTotalCount();
