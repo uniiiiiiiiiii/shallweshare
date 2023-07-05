@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lgy.shallweshare.party.dao.Party_boardDao">
+	<insert id="insertChat" parameterType="hashmap">
+		insert into party_board
+		values(
+		NVL((SELECT MAX(p_board_id) from party_board),0)+1,
+		#{p_id}, #{u_id}, #{p_board_content}, SYSDATE)
+	</insert>
+	
+	<select id="getChattingList" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.Party_boardUsersDto">
+		select
+			b.p_board_id,
+			b.p_id,
+			b.u_id,
+			u.u_nickname,
+			b.p_board_content,
+			b.p_board_created
+		from party_board b LEFT OUTER JOIN users u
+        on b.u_id = u.u_id
+		where p_id=#{p_id,jdbcType= VARCHAR}
+		order by b.p_board_created asc
+	</select>
+
+
+</mapper>

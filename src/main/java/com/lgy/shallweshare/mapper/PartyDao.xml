@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lgy.shallweshare.party.dao.PartyDao">
+	<select id="getPartyInfo" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		select p_id,
+		u_id,
+		p_platform,
+		p_title,
+		p_max,
+		p_finish_date,
+		p_price,
+		p_content,
+		p_adult,
+		p_platform_id,
+		p_platform_password,
+		p_adult_password,
+		p_created,
+		p_deleted
+		from party
+		where p_id =
+		#{p_id,jdbcType = VARCHAR}
+	</select>
+
+	<insert id="application_process" parameterType="hashmap">
+		insert into
+		application
+		values(
+		NVL((SELECT MAX(a_id) from application),0)+1,
+		#{u_id}, #{p_id}, #{a_price}, SYSDATE, #{a_payment},
+		#{a_completed},'F')
+	</insert>
+
+
+	<insert id="createParty" parameterType="hashmap">
+		insert into
+		PARTY
+		values(
+		NVL((SELECT MAX(p_id) from party),0)+1,
+		#{u_id, jdbcType=VARCHAR},
+		#{p_platform, jdbcType=VARCHAR},
+		#{p_title, jdbcType=VARCHAR},
+		#{p_max,
+		jdbcType=VARCHAR},
+		#{p_finish_date, jdbcType=VARCHAR},
+		#{p_price,
+		jdbcType=VARCHAR},
+		#{p_content, jdbcType=VARCHAR},
+		#{p_adult,
+		jdbcType=VARCHAR},
+		#{p_platform_id, jdbcType=VARCHAR},
+		#{p_platform_password, jdbcType=VARCHAR},
+		#{p_adult_password,
+		jdbcType=VARCHAR},
+		SYSDATE,
+		'F')
+	</insert>
+
+	<select id="getParticipantList" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.ApplicationDto">
+		select
+		u_id
+		from application
+		where p_id = #{p_id,jdbcType =VARCHAR}
+		order by a_created asc
+	</select>
+
+
+	<!-- 리스트 출력 -->
+	<select id="getParty_list" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		select * from party order by p_id
+	</select>
+
+	<select id="getParty_listNetfliex" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		 <![CDATA[
+			select * from party where p_platform= 'netflix'
+		]]>
+	</select>
+	<select id="getParty_listWavve" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		 <![CDATA[
+			select * from party where p_platform= 'wavve'
+		]]>
+	</select>
+	<select id="getParty_listTving" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		 <![CDATA[
+			select * from party where p_platform= 'tving'
+		]]>
+	</select>
+	<select id="getParty_listDisney" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		 <![CDATA[
+			select * from party where p_platform= 'disney'
+		]]>
+	</select>
+	<select id="getParty_listWatcha" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		 <![CDATA[
+			select * from party where p_platform= 'watcha'
+		]]>
+	</select>
+
+
+	<!-- 페이징 -->
+	<select id="listWithPaging"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+        <![CDATA[
+	        SELECT *
+			FROM (SELECT rownum rn, p_id, u_id,p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+	       		 FROM (select * from party order by p_id desc)
+	        	 WHERE rownum <= (#{pageNum} * #{amount})
+	        	 ORDER BY p_id desc
+	       		 )       
+			WHERE rn > (#{pageNum} -1) * #{amount}
+        
+		]]>
+	</select>
+	<select id="netflixPaging"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+        <![CDATA[
+	        SELECT *
+			FROM (SELECT rownum rn, p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+	       		 FROM (select * from party order by p_id desc)
+	        	 WHERE rownum <= (#{pageNum} * #{amount})
+	        	 and p_platform = 'netflix'
+	        	 ORDER BY p_id desc
+	       		 )       
+			WHERE rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+	<select id="wavvePaging"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+        <![CDATA[
+	        SELECT *
+			FROM (SELECT rownum rn, p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+	       		 FROM (select * from party order by p_id desc)
+	        	 WHERE rownum <= (#{pageNum} * #{amount})
+	        	 and p_platform = 'wavve'
+	        	 ORDER BY p_id desc
+	       		 )       
+			WHERE rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+	<select id="tvingPaging"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+        <![CDATA[
+	        SELECT p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+			FROM (SELECT rownum rn, p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+	       		 FROM (select * from party order by p_id desc)
+	        	 WHERE rownum <= (#{pageNum} * #{amount})
+	        	 and p_platform = 'tving'
+	        	 ORDER BY p_id desc
+	       		 )       
+			WHERE rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+	<select id="disneyPaging"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+        <![CDATA[
+	        SELECT p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+			FROM (SELECT rownum rn, p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+	       		 FROM (select * from party order by p_id desc)
+	        	 WHERE rownum <= (#{pageNum} * #{amount})
+	        	 and p_platform = 'disney'
+	        	 ORDER BY p_id desc
+	       		 )       
+			WHERE rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+	<select id="watchaPaging"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+        <![CDATA[
+	        SELECT p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+			FROM (SELECT rownum rn, p_id, u_id, p_title, p_max, p_finish_date, p_price, p_platform, p_adult, p_content, p_created
+	       		 FROM (select * from party order by p_id desc)
+	        	 WHERE rownum <= (#{pageNum} * #{amount})
+	        	 and p_platform = 'watcha'
+	        	 ORDER BY p_id desc
+	       		 )       
+			WHERE rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*) from party
+	</select>
+
+	<select id="getNetflixCount" resultType="int">
+			 <![CDATA[
+				SELECT count(*) from party where p_platform= 'netflix'
+			]]>
+	</select>
+
+	<select id="getWavveCount" resultType="int">
+			 <![CDATA[
+				SELECT count(*) from party where p_platform= 'wavve'
+			]]>
+	</select>
+
+	<select id="getTivingCount" resultType="int">
+			 <![CDATA[
+				SELECT count(*) from party where p_platform= 'tving'
+			]]>
+	</select>
+
+	<select id="getDisneyCount" resultType="int">
+			 <![CDATA[
+				SELECT count(*) from party where p_platform= 'disney'
+			]]>
+	</select>
+
+	<select id="getWatchaCount" resultType="int">
+			 <![CDATA[
+				SELECT count(*) from party where p_platform= 'watcha'
+			]]>
+	</select>
+
+	<select id="content_view" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		select * from party where p_id=#{p_id}
+	</select>
+
+	<delete id="party_delete" parameterType="hashmap">
+		delete from party where
+		p_id=#{p_id}
+	</delete>
+
+	<update id="party_modify" parameterType="hashmap">
+
+		UPDATE PARTY 
+		SET P_PLATFORM =#{p_platform}
+		, P_TITLE = #{p_title}
+		, P_MAX =#{p_max}
+		,P_FINISH_DATE = #{p_finish_date}
+		,P_PRICE =#{p_price}
+		,P_CONTENT = #{p_content}
+		,P_ADULT =#{p_adult}
+		,P_PLATFORM_ID= #{p_platform_id}
+		,P_PLATFORM_PASSWORD = #{p_platform_password}
+		,P_ADULT_PASSWORD = #{p_adult_password} 
+		WHERE 
+		P_ID =#{p_id, jdbcType = VARCHAR}
+
+	</update>
+
+</mapper>

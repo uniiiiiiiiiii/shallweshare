@@ -1,0 +1,63 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lgy.shallweshare.review.dao.ReviewDao">
+	<insert id="reviewWrite" parameterType="hashmap">
+		insert into REVIEW(review_id,a_id,p_id, u_id, review_u_id, review_satisfy, review_content, review_created) 
+		values( NVL((select max (review_id)from review),0)+1,#{a_id},#{p_id}, #{u_id}, #{review_u_id}, #{review_satisfy}, #{review_content}, SYSDATE)
+		
+	</insert>
+
+	<select id="getReviewInfo" parameterType="hashmap" resultType="com.lgy.shallweshare.review.dto.ReviewDto">
+		select 
+			review_id,
+			u_id, 
+			review_u_id,
+			p_id,
+			review_satisfy,
+			review_content,
+			review_created from
+		REVIEW where review_id=#{review_id}
+	</select>
+
+	<update id="reviewModify" parameterType="hashmap">
+		update review set
+			review_satisfy = #{review_satisfy},
+			review_content = #{review_content},
+			review_created = SYSDATE
+		where review_id = #{review_id}
+	</update>
+	
+	<delete id="reviewDelete" parameterType="hashmap">
+		delete from review
+		 where review_id=#{review_id}
+	</delete>
+	
+	<select id="getPersonalReviewList" resultType="com.lgy.shallweshare.review.dto.ReviewDto">
+		select 
+		review_id,
+		p_id,
+	    u_id,
+	    a_id,
+	    review_u_id,
+	    review_satisfy,
+		review_content,
+		review_created from REVIEW
+		where review_u_id=#{u_id, jdbcType=VARCHAR}
+	</select>
+	
+	<update id="updateTemperatureUp" parameterType="hashmap">
+		update users set
+			u_temperature = u_temperature + 0.5
+		where
+			u_id = #{review_u_id,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="updateTemperatureDown" parameterType="hashmap">
+		update users set
+			u_temperature = u_temperature - 0.5
+		where
+			u_id = #{review_u_id,jdbcType=VARCHAR}
+	</update>
+</mapper>

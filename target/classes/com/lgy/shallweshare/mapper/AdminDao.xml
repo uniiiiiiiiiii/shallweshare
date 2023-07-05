@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lgy.shallweshare.admin.dao.AdminDao">
+
+    <select id="uList" resultType="com.lgy.shallweshare.users.dto.UsersDto">
+        select u_id, u_nickname, u_name, u_birth, u_role from users
+    </select>
+    
+    <select id="uSearchList" resultType="com.lgy.shallweshare.users.dto.UsersDto">
+        select u_id, u_nickname, u_name, u_birth, u_role from users
+
+    </select>
+    
+    <select id="rList" resultType="com.lgy.shallweshare.admin.dto.ReportDto">
+        select * from report
+    </select>
+
+    <select id="rSearchList" parameterType="hashmap" resultType="com.lgy.shallweshare.admin.dto.ReportDto">
+		select * from report
+    </select>
+
+    <select id="userListPaging" resultType="com.lgy.shallweshare.users.dto.UsersDto">
+        <![CDATA[
+			select u_id ,u_nickname ,u_name ,u_birth ,u_role
+			from (select rownum rn, u_id ,u_nickname ,u_name ,u_birth ,u_role
+							from users
+						where rownum <= (#{pageNum} * #{amount})
+						order by u_id 
+			)
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+    <select id="reportListPaging" resultType="com.lgy.shallweshare.admin.dto.ReportDto">
+        <![CDATA[
+			select report_id, p_id, u_id, report_u_id, report_category, report_title, report_created
+			from (select rownum rn, report_id, p_id, u_id, report_u_id, report_category, report_title, report_created
+							from report
+						where rownum <= ( #{pageNum} * #{amount})
+						order by u_id
+			)
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="user_view" parameterType="hashmap" resultType="com.lgy.shallweshare.users.dto.UsersDto">
+		select * from users where u_id = #{u_id}
+	</select>
+
+	<select id="report_view" parameterType="hashmap" resultType="com.lgy.shallweshare.admin.dto.ReportDto">
+		select * from report where u_id = #{u_id}
+	</select>
+
+    <update id="modify" parameterType="hashmap">
+		update users set u_role = #{u_role} where u_id = #{u_id}
+    </update>
+    
+    <select id="userTotalCount" resultType="int">
+        SELECT count(*) FROM users
+    </select>
+    
+    <select id="reportTotalCount" resultType="int">
+        SELECT count(*) FROM report
+    </select>
+    
+</mapper>

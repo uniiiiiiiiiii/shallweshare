@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lgy.shallweshare.mypage.dao.MyPageDao">	
+	<select id="getMyPartyList" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.party.dto.PartyDto">
+		select 
+		p_id,
+		u_id,
+		p_platform,
+		p_title,
+		p_max,
+		p_finish_date,
+		p_price,
+		p_content,
+		p_adult,
+		p_platform_id,
+		p_platform_password,
+		p_adult_password,
+		p_created,
+		p_deleted
+		from party
+		where u_id=#{u_id, jdbcType = VARCHAR}
+	</select>
+
+	<select id="getMyApplicationList" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.mypage.dto.ApplicationPartyDto">
+		select
+		    a.a_id
+			,a.u_id
+			,a.p_id
+			,p.p_title
+			,a.a_price
+			,a.a_created
+			,a.a_payment
+			,a_completed
+		from application a, party p
+		where a.u_id= #{u_id, jdbcType=VARCHAR}
+		and a.p_id=p.p_id
+	</select>
+	
+	<select id="getMyReportList" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.admin.dto.ReportDto">
+		select
+		     report_id,
+  			 u_id,
+  			 report_u_id,
+ 			 p_id,
+  			 report_category,
+  			 report_title,
+  			 report_content,
+  			 report_created
+		from report
+		where u_id= #{u_id, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getWritableApplicationList" resultType="com.lgy.shallweshare.mypage.dto.ApplicationPartyDto">
+		select
+		    a.a_id
+			,a.u_id
+			,a.p_id
+			,p.p_title
+			,a.a_price
+			,a.a_created
+			,a.a_payment
+			,a.a_completed
+			,a.a_review
+		from application a, party p
+		where a.u_id= #{u_id, jdbcType=VARCHAR}
+		and a.p_id=p.p_id
+		and a_completed = 'T'
+		and a_review = 'F'
+	</select>
+	
+	<update id="updateReviewAvailability" parameterType="hashmap">
+		update application set 
+			a_review = 'T'
+		where a_id= #{a_id, jdbcType = VARCHAR}
+	</update>
+	
+	
+	<delete id="withdrawal_process" parameterType="hashmap">
+		delete from users where u_id= #{u_id, jdbcType=VARCHAR}
+	</delete>
+	
+		<select id="getWrittenReviewList" parameterType="hashmap" resultType="com.lgy.shallweshare.review.dto.ReviewDto">
+		select 
+			review_id,
+			u_id, 
+			review_u_id,
+			p_id,
+			a_id,
+			review_satisfy,
+			review_content,
+			review_created 
+		from REVIEW 
+		where u_id=#{u_id}
+	</select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lgy.shallweshare.kakopay.dao.PayDao">
+	<insert id="paySave" parameterType="hashmap">
+		insert into
+		application
+		values(
+		NVL((SELECT MAX(a_id) from application),0)+1,
+		#{u_id}, #{p_id}, #{a_price}, SYSDATE, #{a_payment}, #{a_completed},'F')
+	</insert>
+
+</mapper>
