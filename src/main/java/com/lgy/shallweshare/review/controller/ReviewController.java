@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lgy.shallweshare.mypage.service.MyPageService;
-import com.lgy.shallweshare.party.controller.partyController;
+import com.lgy.shallweshare.party.controller.PartyController;
 import com.lgy.shallweshare.party.dto.PartyDto;
 import com.lgy.shallweshare.party.service.PartyService;
 import com.lgy.shallweshare.review.dto.Criteria;
