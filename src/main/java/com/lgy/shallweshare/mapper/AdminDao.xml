@@ -27,9 +27,9 @@
         <![CDATA[
 			select u_id ,u_nickname ,u_name ,u_birth ,u_role
 			from (select rownum rn, u_id ,u_nickname ,u_name ,u_birth ,u_role
-							from users
+							from (select * from users order by u_id desc)
 						where rownum <= (#{pageNum} * #{amount})
-						order by u_id 
+						order by u_id desc
 			)
 			where rn > (#{pageNum} -1) * #{amount}
 		]]>
@@ -39,11 +39,12 @@
         <![CDATA[
 			select report_id, p_id, u_id, report_u_id, report_category, report_title, report_created
 			from (select rownum rn, report_id, p_id, u_id, report_u_id, report_category, report_title, report_created
-							from report
+							from (select * from report order by report_id desc)
 						where rownum <= ( #{pageNum} * #{amount})
-						order by u_id
+						order by report_id desc
 			)
 			where rn > (#{pageNum} -1) * #{amount}
+			
 		]]>
 	</select>
 	
@@ -52,7 +53,7 @@
 	</select>
 
 	<select id="report_view" parameterType="hashmap" resultType="com.lgy.shallweshare.admin.dto.ReportDto">
-		select * from report where u_id = #{u_id}
+		select * from report where report_id = #{report_id} 
 	</select>
 
     <update id="modify" parameterType="hashmap">

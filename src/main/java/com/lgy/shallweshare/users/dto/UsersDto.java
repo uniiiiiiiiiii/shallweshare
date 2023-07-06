@@ -14,6 +14,7 @@ public class UsersDto {
 	 private String u_role;
 	 private String u_login_platform;
 	 private String u_sns_id;
+	 private String u_pwd;
 	 private String u_name;
 	 private String u_nickname;
 	 private Timestamp u_birth;

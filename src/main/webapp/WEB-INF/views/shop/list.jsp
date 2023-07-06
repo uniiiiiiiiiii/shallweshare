@@ -19,7 +19,7 @@
 				<input type="button" class="makeParty" value="파티만들기" onclick="loginCheck()">
 			</td>
 			<td>
-				<a href="login" class="login">로그인</a>
+				 <a href="../users/userSignIn">로그인</a>
 			</td>
 		</tr>
 		<tr>
