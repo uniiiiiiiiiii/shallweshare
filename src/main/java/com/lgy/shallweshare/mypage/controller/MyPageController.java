@@ -48,14 +48,49 @@ public class MyPageController {
 	public String main() {
 		return "redirect:userModify";
 	}
-	
-	
+
+//	=============== 회원 정보 수정 페이지 ===============
+	@RequestMapping("/userModify")
+	public String kakaoUserModify_go(HttpServletRequest request, @RequestParam HashMap<String, String> param,
+			Model model) {
+		if (request.getSession().getAttribute("u_id") != null) {
+			paramPutU_id(request, param);
+			if (param.get("access_token") != null) {
+				ArrayList<KakaoDTO> dtos = usersService.kakaoUserSearch(param);
+				model.addAttribute("usersInfo", dtos);
+			} else {
+				UsersDto dtos = usersService.getUserInfo(Integer.parseInt(param.get("u_id")));
+				model.addAttribute("usersInfo", dtos);
+			}
+
+		}
+		return "mypage/userModify";
+	}
+
+//	=============== 회원 정보 수정 메소드 ===============
+	@RequestMapping("/userModify_process")
+	public String userModify(HttpServletRequest request, @RequestParam HashMap<String, String> param, Model model) {
+		log.info("@# Controller: userModify");
+		if (request.getSession().getAttribute("u_id") != null) {
+			paramPutU_id(request, param);
+			UsersDto user = usersService.getUserInfo(Integer.parseInt(param.get("u_id")));
+			model.addAttribute("usersInfo", user);
+			if (user.getU_login_platform().equals("KAKAO")) {
+				usersService.kakaoUserModify(param);
+			} else {
+				usersService.userModify(param);
+			}
+		}
+		return "redirect:userModify";
+	}
+
 //	=============== 내 파티 보기 ===============
 	@RequestMapping("my_partyList")
 	public String my_partyList(HttpServletRequest request, @RequestParam HashMap<String, String> param, Model model) {
 		if (request.getSession().getAttribute("u_id") != null) {
 			log.info("@# Controller: my_partyList");
 			paramPutU_id(request, param);
+			
 			ArrayList<PartyDto> myPartyList = mService.getMyPartyList(param);
 			model.addAttribute("myPartyList", myPartyList);
 
@@ -133,6 +168,7 @@ public class MyPageController {
 		log.info("@# Controller: written-reviews");
 		if (request.getSession().getAttribute("u_id") != null) {
 			paramPutU_id(request, param);
+			
 			ArrayList<ReviewDto> writtenReviewList = mService.getWrittenReviewList(param);
 			model.addAttribute("written", writtenReviewList);
 
@@ -145,50 +181,6 @@ public class MyPageController {
 		}
 		return "mypage/written-reviews";
 
-	}
-
-	// 회원 정보 수정 페이지
-	@RequestMapping("/userModify")
-	public String kakaoUserModify_go(HttpServletRequest request, @RequestParam HashMap<String, String> param,
-			Model model) {
-		if (request.getSession().getAttribute("u_id") != null) {
-			HttpSession session = request.getSession();
-			String u_id = String.valueOf(session.getAttribute("u_id"));
-
-			param.put("u_id", u_id);
-			if (param.get("access_token") != null) {
-				ArrayList<KakaoDTO> dtos = usersService.kakaoUserSearch(param);
-				model.addAttribute("usersInfo", dtos);
-			} else {
-				UsersDto dtos = usersService.getUserInfo(Integer.parseInt(param.get("u_id")));
-				model.addAttribute("usersInfo", dtos);
-			}
-
-		}
-		return "mypage/userModify";
-//		return "../mypage/userModify";
-	}
-
-// 회원 정보 수정 메소드
-	@RequestMapping("/userModify_process")
-	public String userModify(HttpServletRequest request, @RequestParam HashMap<String, String> param, Model model) {
-		log.info("@# Controller: userModify");
-		if (request.getSession().getAttribute("u_id") != null) {
-			paramPutU_id(request, param);
-			HttpSession session = request.getSession();
-			String u_id = String.valueOf(session.getAttribute("u_id"));
-			if (u_id != null) {
-				UsersDto user = usersService.getUserInfo(Integer.parseInt(param.get("u_id").toString()));
-				model.addAttribute("usersInfo", user);
-
-				if (user.getU_login_platform().equals("KAKAO")) {
-					usersService.kakaoUserModify(param);
-				} else {
-					usersService.userModify(param);
-				}
-			}
-		}
-		return "redirect:userModify";
 	}
 
 }
