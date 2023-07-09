@@ -1,6 +1,6 @@
 package com.lgy.shallweshare.users.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,12 +17,12 @@ public class UsersDto {
 	 private String u_pwd;
 	 private String u_name;
 	 private String u_nickname;
-	 private Timestamp u_birth;
+	 private Date u_birth;
 	 private String u_phoneNum;
 	 private String u_gender;
 	 private String u_email;
 	 private String u_bank_account;
 	 private String u_authentication;
 	 private float u_temperature;
-	 private Timestamp u_created;
+	 private Date u_created;
 }

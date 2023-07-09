@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+
+.icon {
+	margin-top: -50px;
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	position: absolute;
+	top: 70%;
+}
+
+.item-row-pTitle {
+	border-bottom: 1px solid #efefef;
+	position:relative;
+}
+
+.platform-title {
+	display: inline-block;
+	padding-left: 80px;
+}
+
+.p_title {
+	font-size: 30px;
+}
+
+img {
+	max-width: 100%;
+}
+
+.item-row-master {
+	border-bottom: 1px solid #efefef
+}
+
+.masterIcon {
+	
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+
+.item-row-pid {
+	border-bottom: 1px solid #efefef
+}
+
+.item-row-finishDate {
+	border-bottom: 1px solid #efefef
+}
+
+
+.item-row-pContent {
+	
+}
+
+.item-row-application-button {
+}
+
+.item-row-participant-list {
+	position: relative
+	padding: 25px 0;
+}
+.item-row-participant-list .picture{
+	position: relative;
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+.item-row-participant-list li{
+	position:relative;
+	display:inline-block;
+	text-align:center;
+}

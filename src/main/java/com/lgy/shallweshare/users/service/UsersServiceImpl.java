@@ -46,16 +46,6 @@ public class UsersServiceImpl implements UsersService{
 	}
 
 	@Override
-	public void editProfile(HashMap<String, String> param) {
-		log.info("@# Service: editProfile");
-		UsersDao dao  = sqlSession.getMapper(UsersDao.class);
-		dao.editProfile(param);
-	}
-	
-	
-	
-
-	@Override
 	public ArrayList<UsersDto> signIn(HashMap<String, String> param) {
 		log.info("@# UserServiceImpl.signIn() start");
 		UsersDao dao = sqlSession.getMapper(UsersDao.class);
@@ -191,8 +181,8 @@ public class UsersServiceImpl implements UsersService{
             JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
-            String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-            String email = kakao_account.getAsJsonObject().get("email").getAsString();
+            String name = properties.getAsJsonObject().get("nickname").getAsString();
+            String id = kakao_account.getAsJsonObject().get("email").getAsString();
             String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
             System.out.println("@### ServeiceImpl gender1===>>"+ gender);
             
@@ -202,8 +192,8 @@ public class UsersServiceImpl implements UsersService{
             	gender="M";
             }
             System.out.println("@### gender===>>"+ gender);
-            userInfo.put("nickname", nickname);
-            userInfo.put("email", email);
+            userInfo.put("name", name);
+            userInfo.put("id", id);
             userInfo.put("gender", gender);
 
         } catch (IOException e) {
@@ -237,8 +227,6 @@ public class UsersServiceImpl implements UsersService{
 // 카카오회원 정보 수정
 	@Override
 	public void kakaoUserModify(HashMap<String, String> param) {
-//		UsersDao dao = sqlSession.getMapper(UsersDao.class);	
-//		dao.kakaoUserModify(param);
 		mr.kakaoUserModify(param);
 	}
 
@@ -315,17 +303,23 @@ public class UsersServiceImpl implements UsersService{
 	    }
 	}
 	
-//	DB에서 토큰 얻어오기 -> 지금은 안쓰는데 혹시 몰라서 해둠,,
-	@Override
-	public void getAccess_Token(HashMap<String, String> param) {
-		UsersDao dao = sqlSession.getMapper(UsersDao.class);
-		dao.getAccess_Token(param);	
-	}
-
 	@Override
 	public void logout(HttpSession session) {
 		 session.invalidate();
 	}
+
+	@Override
+	public int nickChk(String u_nickname) {
+		UsersDao dao = sqlSession.getMapper(UsersDao.class);
+		return dao.nickChk(u_nickname);
+	}
+
+	@Override
+	public int nickModifyChk(HashMap<String, String> param) {
+		UsersDao dao = sqlSession.getMapper(UsersDao.class);
+		return dao.nickModifyChk(param);
+	}
+
 
 
 

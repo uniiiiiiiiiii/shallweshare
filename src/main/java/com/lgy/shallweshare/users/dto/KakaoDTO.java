@@ -9,6 +9,7 @@ public class KakaoDTO {
 	
 	private int u_id;
 	private String u_role;
+	private String u_sns_id;
 	private String u_login_platform;
 	private String u_name;
 	

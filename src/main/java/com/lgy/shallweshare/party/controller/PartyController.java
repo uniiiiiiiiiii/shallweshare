@@ -39,11 +39,7 @@ public class PartyController {
 	private Party_BoardService p_boardService;
 
 	@RequestMapping("/shop/party_page")
-	public String content_view(HttpServletRequest request, @RequestParam HashMap<String, String> param, Model model) {
-		// 임시 로그인 세션
-		HttpSession session = request.getSession();
-		session.setAttribute("u_id", 100);
-
+	public String content_view(@RequestParam HashMap<String, String> param, Model model) {
 		log.info("@# Controller: party_page");
 		// 파티 정보 가져오기
 		PartyDto party = pService.getPartyInfo(param);

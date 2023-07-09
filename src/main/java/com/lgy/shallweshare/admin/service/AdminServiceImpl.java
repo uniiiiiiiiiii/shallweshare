@@ -72,7 +72,8 @@ public class AdminServiceImpl implements AdminService{
 	       int count = 0;
 	       ArrayList<UsersDto> dtolist = dao.uSearchList();
 	       for (UsersDto UsersDto : dtolist) {
-	            if (UsersDto.getU_name().contains(param.get("u_name")) || UsersDto.getU_nickname().contains(param.get("u_name"))) {
+	    	   
+	            if (UsersDto.getU_name().contains(param.get("u_name"))  || UsersDto.getU_nickname().contains(param.get("u_name"))) {
 	                count++;
 	            }
 	        }

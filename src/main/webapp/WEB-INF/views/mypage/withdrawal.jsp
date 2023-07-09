@@ -47,12 +47,9 @@
 			alert('입력값이 맞지 않습니다.');
 		}else {
 			alert("회원 탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.");
-			if(${user.u_login_platform == 'KAKAO'}){
-				location.href='../users/kakaounlink'
-			}else{
-				location.href='../users/userDel'
-				
-			}
+			
+			location.href='../mypage/withdrawal_process'
+			
 		}
 	});
 </script>

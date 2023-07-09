@@ -24,15 +24,6 @@
 		from users
 		where u_id = #{u_id,jdbcType = VARCHAR}
 	</select>
-	<update id="editProfile" parameterType="hashmap">
-		update users set 
-			u_name = #{u_name},
-			u_nickname = #{u_nickname},
-			u_phoneNum = #{u_phoneNum},
-			u_email = #{u_email},
-			u_bank_account = #{u_bank_account}
-		where u_id= #{u_id, jdbcType = VARCHAR}
-	</update>
 	
 	<!-- 로그인 -->
     <select id="signIn" resultType="com.lgy.shallweshare.users.dto.UsersDto" parameterType="hashmap">
@@ -45,31 +36,13 @@
     
 <!-- 회원가입 -->
     <insert id="signUp" parameterType="hashmap">
-    
-<!--     시퀀스 사용 -->
-<!--     	insert into users1(u_id, u_role,u_login_platform,u_sns_id,u_pwd, u_name -->
-<!--                     ,u_nickname,u_phoneNum,u_gender,u_email,u_bank_account -->
-<!--                     ,u_authentication,u_temperature,u_created)  -->
-<!-- 		values(users_seq.NEXTVAL,'USER', null,#{u_sns_id},#{u_pwd},#{u_name} -->
-<!--       		 	,#{u_nickname},#{u_phoneNum},#{u_gender},#{u_email} -->
-<!--      		 	,#{u_bank_account},'T','30',sysdate) -->
-     		 	
-     		 	
-<!--    마지막으로 입력된 일련번호 +1  => max+1에서 중복 가능성 조금 더 최소화 -->
-<!--      	insert into users(u_id, u_role,u_login_platform,u_sns_id,u_pwd, u_name -->
-<!--                     ,u_nickname,u_phoneNum,u_gender,u_email,u_bank_account -->
-<!--                     ,u_authentication,u_temperature,u_created)  -->
-<!-- 		values(NVL((SELECT u.u_id FROM users u WHERE ROWNUM = 1), 0) + 1,'USER', null,#{u_sns_id},#{u_pwd},#{u_name} -->
-<!--       		 	,#{u_nickname},#{u_phoneNum},#{u_gender},#{u_email} -->
-<!--      		 	,#{u_bank_account},'T','30',sysdate) -->
-
      	insert into users(u_id, u_role,u_login_platform,u_sns_id,u_pwd, u_name
                     ,u_nickname,u_phoneNum,u_gender,u_email,u_bank_account
                     ,u_authentication,u_temperature,u_created) 
 		values((SELECT NVL(MAX(u_id), 0) + 1 FROM users),'USER', 'NORMAL',#{u_sns_id},#{u_pwd},#{u_name}
       		 	,#{u_nickname},#{u_phoneNum},#{u_gender},#{u_email}
-     		 	,#{u_bank_account},'T','30',sysdate)
-     		</insert>
+     		 	,#{u_bank_account},'T','30',SYSDATE)
+     </insert>
      		
      		
      		 	
@@ -80,6 +53,22 @@
     	from users
     	where u_sns_id= #{u_sns_id,jdbcType=VARCHAR}
     </select> 	
+    
+    <!--닉네임 중복 검사 -->
+        <select id="nickChk" resultType="integer" parameterType="String">
+    	select count(*)
+    	from users
+    	where u_nickname= #{u_nickname,jdbcType=VARCHAR}
+    </select> 
+    
+    
+   <!--닉네임 중복 검사 (회원정보 수정에서 사용) -->
+        <select id="nickModifyChk" resultType="integer" parameterType="hashmap">
+    	select count(*)
+		from users
+		where u_nickname =  #{u_nickname,jdbcType=VARCHAR}
+		and u_id NOT LIKE #{u_id,jdbcType=VARCHAR}
+    </select> 
     
     <!-- 유저 정보 찾기 -->
     <select id="userSearch" resultType="com.lgy.shallweshare.users.dto.UsersDto" parameterType="hashmap">
@@ -110,74 +99,57 @@
     
     
 <!--      	kakao -->
+<!--             userInfo.put("name", name); -->
+<!--             userInfo.put("id", id); -->
+<!--             userInfo.put("gender", gender); -->
 
      	<!-- 정보 찾기 -->
 	<select id="findKakao" resultType="com.lgy.shallweshare.users.dto.KakaoDTO" parameterType="hashmap">
-
-		select * from users 
-		where u_nickname=#{nickname,jdbcType=VARCHAR} 
-			and u_email=#{email,jdbcType=VARCHAR} 
-			and u_gender=#{gender,jdbcType=VARCHAR} 
-<!-- 			and access_Token=#{access_Token,jdbcType=VARCHAR}  -->
-			
-<!-- 					select * from users  -->
-<!-- 		where access_Token=#{access_Token,jdbcType=VARCHAR}  -->
-			
-		
-			
-			
+			select * 
+		from users 
+		where u_name=#{name,jdbcType=VARCHAR} 
+				and u_sns_id=#{id,jdbcType=VARCHAR} 
+				and u_gender=#{gender,jdbcType=VARCHAR} 
 	</select>
         
 <!-- 카카오 회원가입 -->
     <insert id="kakaoInsert" parameterType="hashmap">
-     		 	insert into users(u_id, u_role,u_login_platform
-     		 						,u_nickname,u_email,u_gender
-<!--      		 						,u_nickname,u_email -->
-     		 						,u_authentication,u_temperature,u_created,access_Token)
-     		 	values((SELECT NVL(MAX(u_id), 0) + 1 FROM users),'USER', 'KAKAO'
-     		 			,#{nickname,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{gender}
-<!--      		 			,#{nickname},#{email} -->
-     		 			,'T','30',sysdate,#{access_Token,jdbcType=VARCHAR})
+     		 	insert into users
+     		 		(u_id, u_role,u_login_platform
+     		 		,u_name,u_sns_id,u_gender
+     		 		,u_authentication,u_temperature,u_created)
+     		 						
+     		 	values((SELECT NVL(MAX(u_id), 0) + 1 FROM users)
+     		 			,'USER', 'KAKAO'
+     		 			,#{name,jdbcType=VARCHAR}
+     		 			,#{id,jdbcType=VARCHAR}
+     		 			,#{gender,jdbcType=VARCHAR}
+     		 			,'T','30',SYSDATE)
      </insert> 	 	
      
 <!-- 카카오 추가 회원가입 (업데이트로 값 넣어줌) -->
     <update id="kakaoSignUp" parameterType="hashmap">
         UPDATE users
         SET
-        u_name = #{u_name},
+        u_email = #{u_email},
+        u_nickname = #{u_nickname},
         u_phoneNum =  #{u_phoneNum},
         u_bank_account = #{u_bank_account}
         WHERE u_id = #{u_id,jdbcType=VARCHAR}
     </update>
     
+    
 <!--     카카오 회원 수정 -->
     <update id="kakaoUserModify" parameterType="hashmap">
-<!--         UPDATE users -->
-<!--         SET -->
-<!--         u_name = #{u_name}, -->
-<!--         u_phoneNum =  #{u_phoneNum}, -->
-<!--         u_bank_account = #{u_bank_account}, -->
-<!--         u_nickname=#{u_nickname}, -->
-<!--         u_email=#{u_email},  -->
-<!--         u_gender=#{u_gender} -->
-<!--         WHERE u_id = #{u_id} -->
-
-
-<!--         UPDATE users -->
-<!--         SET -->
-<!--         u_name = #{u_name}, -->
-<!--         u_phoneNum = #{u_phoneNum}, -->
-<!--         u_bank_account = #{u_bank_account} -->
-<!--         WHERE u_id = #{u_id} -->
-        
         UPDATE users
         SET
-        u_name = #{u_name},
-        u_phoneNum = #{u_phoneNum},
-        u_bank_account = #{u_bank_account}
-        WHERE u_nickname=#{u_nickname} and u_email=#{u_email} and u_gender=#{u_gender} and u_id = #{u_id}
-
+        u_email = #{u_email,jdbcType=VARCHAR},
+        u_nickname = #{u_nickname,jdbcType=VARCHAR},
+        u_phoneNum = #{u_phoneNum,jdbcType=VARCHAR},
+        u_bank_account = #{u_bank_account,jdbcType=VARCHAR}
+        WHERE u_id = #{u_id,jdbcType=VARCHAR}
     </update>
+    
     
         <!-- 카카오 유저 정보 찾기 -->
     <select id="kakaoUserSearch" resultType="com.lgy.shallweshare.users.dto.KakaoDTO" parameterType="hashmap">
@@ -185,20 +157,5 @@
         FROM users
         WHERE u_id=#{u_id,jdbcType=VARCHAR}
     </select>
-    
-<!--             UPDATE users -->
-<!--         SET -->
-<!--         u_pwd = #{u_pwd}, -->
-<!--         u_nickname =  #{u_nickname}, -->
-<!--         u_phoneNum = #{u_phoneNum}, -->
-<!--         u_email  = #{u_email}, -->
-<!--         u_bank_account = #{u_bank_account} -->
-<!--         WHERE u_id = #{u_id} -->
 	
-<!-- 	토큰 찾기 -->
-	    <select id="getAccess_Token" resultType="com.lgy.shallweshare.users.dto.UsersDto" parameterType="hashmap">
-        SELECT access_Token
-        FROM users
-        WHERE u_id=#{u_id,jdbcType=VARCHAR}
-    </select>
 </mapper>

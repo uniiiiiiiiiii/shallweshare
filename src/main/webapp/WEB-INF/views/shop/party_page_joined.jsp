@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${party.p_title}</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/chatRoom.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop/chatRoom.css" />
 </head>
 <body>
 	<%@ include file="include/modifyDeleteCheck.jsp" %>

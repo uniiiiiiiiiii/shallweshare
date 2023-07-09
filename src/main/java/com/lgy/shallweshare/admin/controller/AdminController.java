@@ -26,6 +26,11 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
+	@RequestMapping("/")
+	public String main() {
+		return "redirect:main";
+	}
+	
 	@RequestMapping("/adUserInfo")
 	public String ulist(Criteria cri, Model model) {
 		log.info("@# ad_user");
@@ -41,6 +46,7 @@ public class AdminController {
 	@RequestMapping("/adReport")
 	public String rlist(Criteria cri, Model model) {
 		log.info("@# ad_report");
+		log.info("@# cri ====>"+cri);
 		
 		model.addAttribute("rlist", service.rList(cri));
 		int total = service.reportTotalCount();
@@ -236,9 +242,9 @@ public class AdminController {
 		return "admin/searchReportInfo";
 	}
 	
-	@RequestMapping("/admain")
+	@RequestMapping("/main")
 	public String admain() {
-		return "admin/admain";
+		return "admin/main";
 	}
 	
 	@RequestMapping("/user_view")

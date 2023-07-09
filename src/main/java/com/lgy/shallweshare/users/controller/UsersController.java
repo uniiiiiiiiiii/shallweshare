@@ -31,11 +31,6 @@ public class UsersController {
 	@Autowired
 	private HttpSession session;
 
-	@RequestMapping("main")
-	public String home() {
-		return "main";
-	}
-
 	// 로그인 페이지로 이동
 	@RequestMapping("/userSignIn")
 	public String login() {
@@ -66,22 +61,12 @@ public class UsersController {
 		}
 	}
 
-//		마이페이지
-	@RequestMapping("/mypage")
-	public String myPage(HttpServletRequest request, @RequestParam HashMap<String, String> param, Model model) {
-		HttpSession session = request.getSession();
-		param.put("u_id", String.valueOf(session.getAttribute("u_id")));
-		ArrayList<UsersDto> dtos = usersService.userSearch(param);
-		model.addAttribute("usersInfo", dtos);
-		return "/users/mypage";
-	}
-
 //		로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		log.info("@#logout session" + session);
 		usersService.logout(session);
-		return "redirect:/users/main";
+		return "redirect:/shop/list";
 	}
 
 //	    일반 회원가입 페이지로 이동
@@ -103,22 +88,25 @@ public class UsersController {
 	}
 
 //		아이디 중복 체크
-	@RequestMapping("/idChk")
-	public @ResponseBody String idChk(@RequestParam("u_sns_id") String u_sns_id) {
-		log.info("@# idChk 1");
-
-		String result = "Y";
-		int flag = usersService.idChk(u_sns_id);
-
-		if (flag == 1) {
-			result = "N";
-		}
-		log.info("@# idChk 2");
-		return result;
+	@RequestMapping("idChk")
+	public @ResponseBody int idChk(@RequestParam("u_sns_id") String u_sns_id) {
+		return usersService.idChk(u_sns_id);
 	}
-
 	
-
+//	닉네임 중복 체크
+	@RequestMapping("nickChk")
+	public @ResponseBody int nickChk(@RequestParam("u_nickname") String u_nickname){
+		return usersService.nickChk(u_nickname);
+	}
+	
+//	회원수정에서 닉네임 중복 체크
+	@RequestMapping("nickModifyChk")
+	public @ResponseBody int nickModifyChk(HttpServletRequest request, @RequestParam HashMap<String, String> param){
+		HttpSession session = request.getSession();
+		param.put("u_id", String.valueOf(session.getAttribute("u_id")));
+		return usersService.nickModifyChk(param);
+	}
+	
 //		일반 유저 탈퇴
 	@RequestMapping("/userDel")
 	public String userDel(HttpServletRequest request, @RequestParam HashMap<String, String> param) {
@@ -126,7 +114,7 @@ public class UsersController {
 		param.put("u_id", String.valueOf(session.getAttribute("u_id")));
 		usersService.logout(session);
 		usersService.userDel(param);
-		return "redirect:/users/main";
+		return "redirect:/shop/list";
 	}
 
 	// 카카오 로그인
@@ -155,12 +143,6 @@ public class UsersController {
 		}
 	}
 
-	@RequestMapping("/kakaoSignUp")
-	public String kakaoSignUp() {
-		log.info("@# kakaoSignUp");
-		return "/users/kakaoSignUpOk";
-	}
-
 //		카카오 추가 회원가입
 	@RequestMapping(value = "/kakaoSignUpOk")
 	public String kakaoregisterOk(@RequestParam HashMap<String, String> param, HttpServletRequest request) {
@@ -169,44 +151,12 @@ public class UsersController {
 		return "redirect:/users/userSignIn";
 	}
 
-	// 수정 페이지
-	@RequestMapping("/kakaoUserModify_go")
-	public String kakaoUserModify_go(HttpServletRequest request, @RequestParam HashMap<String, String> param,
-			Model model) {
-		HttpSession session = request.getSession();
-		String u_id = String.valueOf(session.getAttribute("u_id"));
-		if (u_id != null) {
-			param.put("u_id", u_id);
-			ArrayList<KakaoDTO> dtos = usersService.kakaoUserSearch(param);
-			model.addAttribute("usersInfo", dtos);
-		}
-		return "mypage/userModify";
-	}
-
-//		회원 정보 수정 메소드
-	@RequestMapping("/kakaoUserModify")
-	public String kakaoUserModify(HttpServletRequest request, @RequestParam HashMap<String, String> param,
-			Model model) {
-		log.info("@# kakaoUserModify");
-		HttpSession session = request.getSession();
-		String u_id = String.valueOf(session.getAttribute("u_id"));
-		if (u_id != null) {
-			param.put("u_id", u_id);
-			ArrayList<KakaoDTO> dtos = usersService.kakaoUserSearch(param);
-			log.info("@# kakaoUserModify-kakaoUserSearch-" + param);
-			model.addAttribute("usersInfo", dtos);
-			log.info("@# kakaoUserModify-addAttribute");
-			usersService.kakaoUserModify(param);
-		}
-		return "redirect:mypage/userModify";
-	}
-
 //		카카오 로그아웃
 	@RequestMapping(value = "/kakaologout")
 	public String kakaologout(HttpSession session) {
 		usersService.kakaologout((String) session.getAttribute("access_Token"));
 		session.invalidate();
-		return "redirect:/users/main";
+		return "redirect:/shop/list";
 	}
 
 //		카카오 회원 탈퇴 (연결 끊기)
@@ -217,8 +167,7 @@ public class UsersController {
 		System.out.println("kakaounlink@@@@@@@@@@===>" + ((String) session.getAttribute("access_Token")));
 		usersService.userDel(param);
 		session.invalidate();
-		return "redirect:/users/main";
-
+		return "redirect:/shop/list";
 	}
 
 }

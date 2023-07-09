@@ -53,7 +53,7 @@
 	</select>
 
 	<select id="report_view" parameterType="hashmap" resultType="com.lgy.shallweshare.admin.dto.ReportDto">
-		select * from report where report_id = #{report_id} 
+		select * from report where report_id = #{report_id, jdbcType=VARCHAR} 
 	</select>
 
     <update id="modify" parameterType="hashmap">

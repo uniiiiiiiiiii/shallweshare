@@ -3,20 +3,39 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lgy.shallweshare.report.dao.ReportDao">
-    
-    <insert id="reportWrite" parameterType="hashmap">
-		insert into report(report_id, u_id, report_u_id, p_id, report_category, report_content, report_title, report_created) values
-   			 ((SELECT NVL(MAX(report_id), 0) + 1 FROM report)
-   			 , #{u_id, jdbcType=NUMERIC}
-   			 , #{report_u_id, jdbcType=NUMERIC}
-   			 , #{p_id, jdbcType=NUMERIC}
-   			 , #{report_category, jdbcType=VARCHAR}
-   			 , #{report_title, jdbcType=VARCHAR}
-   			 , #{report_content, jdbcType=VARCHAR}
-   			 , SYSDATE)
-    </insert>
-    
-    <select id="reportView" parameterType="hashmap" resultType="com.lgy.shallweshare.report.dto.ReportDto">
-  	 	select report_id, u_id, report_u_id, p_id, report_category, report_content, report_title, report_created from report where report_id=#{report_id}
-    </select>
+
+	<insert id="reportWrite" parameterType="hashmap">
+		insert into
+		report(report_id, u_id, report_u_id, p_id, report_category,
+		report_content, report_title, report_created) values
+		((SELECT NVL(MAX(report_id), 0) + 1 FROM report)
+		, #{u_id, jdbcType=NUMERIC}
+		, #{report_u_id, jdbcType=NUMERIC}
+		, #{p_id, jdbcType=NUMERIC}
+		, #{report_category, jdbcType=VARCHAR}
+		, #{report_title, jdbcType=VARCHAR}
+		, #{report_content, jdbcType=VARCHAR}
+		, SYSDATE)
+	</insert>
+
+	<select id="report_view" parameterType="hashmap"
+		resultType="com.lgy.shallweshare.report.dto.ReportDto">
+		select report_id, u_id, report_u_id, p_id, report_category, report_content,
+		report_title, report_created from report where report_id=#{report_id}
+	</select>
+
+	<update id="reportModify" parameterType="hashmap">UPDATE
+		report SET 
+		report_category = #{report_category,jdbcType=VARCHAR},
+		p_id =#{p_id,jdbcType=VARCHAR},
+		report_u_id =#{report_u_id,jdbcType=VARCHAR},
+		report_title =#{report_title,jdbcType=VARCHAR},
+		report_content =  #{report_content,jdbcType=VARCHAR}
+		WHERE report_id =#{report_id,jdbcType=VARCHAR} 
+	</update>
+
+	<!-- 신고 내역 삭제 -->
+	<update id="reportDelete" parameterType="hashmap">
+	delete from report where
+		report_id=#{report_id,jdbcType=VARCHAR} </update>
 </mapper>

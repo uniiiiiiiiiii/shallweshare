@@ -13,7 +13,7 @@
 			<input type="hidden" name="u_id" value="${sessionScope.u_id}"> 
 			<tr>
 				<td>신고 사유</td>
-				<td><select name="report_category">
+				<td><select name="report_category" id="report_category">
 						<option value="--" selected>선택</option>
 						<option value="먹튀">먹튀</option>
 						<option value="입금지연">입금지연</option>
