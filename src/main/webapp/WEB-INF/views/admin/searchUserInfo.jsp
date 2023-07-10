@@ -45,7 +45,8 @@
 							onclick="window.open(this.href, '_blank', 'width=775, height=635'); return false;">${dto.u_nickname}</a>
 						</td>
 						<td>${dto.u_name}</td>
-						<td><fmt:formatDate value="${dto.u_created}" pattern="yyyy-MM-dd" /></td>
+						<td><fmt:formatDate value="${dto.u_created}"
+								pattern="yyyy-MM-dd" /></td>
 						<td>${dto.u_role}</td>
 							<td><select name="u_role">
 									<c:choose>
