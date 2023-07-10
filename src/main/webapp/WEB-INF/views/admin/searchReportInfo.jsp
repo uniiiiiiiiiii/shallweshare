@@ -38,7 +38,7 @@
 					<td>${dto.report_u_id}</td>
 					<td>${dto.report_category}</td>
 					<td>
-						<a href="report_view?report_id=${dto.report_id}" onclick="window.open(this.href, '_blank', 'width=775, height=395'); return false;">${dto.report_title}</a>
+						<a href="report_view?u_id=${dto.u_id}" onclick="window.open(this.href, '_blank', 'width=775, height=395'); return false;">${dto.report_title}</a>
 					</td>
 					<td><fmt:formatDate value="${dto.report_created}" pattern="yyyy-MM-dd"/></td>
 				</tr>

@@ -26,11 +26,6 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
-	@RequestMapping("/")
-	public String main() {
-		return "redirect:main";
-	}
-	
 	@RequestMapping("/adUserInfo")
 	public String ulist(Criteria cri, Model model) {
 		log.info("@# ad_user");
