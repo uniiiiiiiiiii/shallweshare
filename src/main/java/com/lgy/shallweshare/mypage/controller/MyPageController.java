@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lgy.shallweshare.admin.dto.ReportDto;
 import com.lgy.shallweshare.mypage.dto.ApplicationPartyDto;
@@ -55,13 +56,14 @@ public class MyPageController {
 			Model model) {
 		if (request.getSession().getAttribute("u_id") != null) {
 			paramPutU_id(request, param);
-			if (param.get("access_token") != null) {
-				ArrayList<KakaoDTO> dtos = usersService.kakaoUserSearch(param);
-				model.addAttribute("usersInfo", dtos);
-			} else {
+//			if (param.get("access_token") != null) {
+//				ArrayList<KakaoDTO> dtos = usersService.kakaoUserSearch(param);
+//				model.addAttribute("usersInfo", dtos);
+//			} else {
 				UsersDto dtos = usersService.getUserInfo(Integer.parseInt(param.get("u_id")));
+				log.info("@#userModify dto"+dtos);
 				model.addAttribute("usersInfo", dtos);
-			}
+//			}
 
 		}
 		return "mypage/userModify";
@@ -82,6 +84,14 @@ public class MyPageController {
 			}
 		}
 		return "redirect:userModify";
+	}
+	
+//	회원수정에서 닉네임 중복 체크
+	@RequestMapping("nickModifyChk")
+	public @ResponseBody int nickModifyChk(HttpServletRequest request, @RequestParam HashMap<String, String> param){
+		HttpSession session = request.getSession();
+		param.put("u_id", String.valueOf(session.getAttribute("u_id")));
+		return usersService.nickModifyChk(param);
 	}
 
 //	=============== 내 파티 보기 ===============

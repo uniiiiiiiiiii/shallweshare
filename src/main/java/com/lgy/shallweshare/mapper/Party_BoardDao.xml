@@ -8,7 +8,7 @@
 		insert into party_board
 		values(
 		NVL((SELECT MAX(p_board_id) from party_board),0)+1,
-		#{p_id}, #{u_id}, #{p_board_content}, SYSDATE)
+		#{p_id,jdbcType= VARCHAR}, #{u_id,jdbcType= VARCHAR}, #{p_board_content,jdbcType= VARCHAR}, SYSDATE)
 	</insert>
 	
 	<select id="getChattingList" parameterType="hashmap"

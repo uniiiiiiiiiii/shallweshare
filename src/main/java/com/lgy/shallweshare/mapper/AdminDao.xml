@@ -7,11 +7,11 @@
 <mapper namespace="com.lgy.shallweshare.admin.dao.AdminDao">
 
     <select id="uList" resultType="com.lgy.shallweshare.users.dto.UsersDto">
-        select u_id, u_nickname, u_name, u_birth, u_role from users
+        select u_id, u_nickname, u_name, u_created, u_role from users
     </select>
     
     <select id="uSearchList" resultType="com.lgy.shallweshare.users.dto.UsersDto">
-        select u_id, u_nickname, u_name, u_birth, u_role from users
+        select u_id, u_nickname, u_name, u_created, u_role from users
 
     </select>
     
@@ -25,8 +25,8 @@
 
     <select id="userListPaging" resultType="com.lgy.shallweshare.users.dto.UsersDto">
         <![CDATA[
-			select u_id ,u_nickname ,u_name ,u_birth ,u_role
-			from (select rownum rn, u_id ,u_nickname ,u_name ,u_birth ,u_role
+			select u_id ,u_nickname ,u_name ,u_created ,u_role
+			from (select rownum rn, u_id ,u_nickname ,u_name, u_created ,u_role
 							from (select * from users order by u_id desc)
 						where rownum <= (#{pageNum} * #{amount})
 						order by u_id desc

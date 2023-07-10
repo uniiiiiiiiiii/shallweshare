@@ -3,6 +3,8 @@
 #chatWrap {
 	width: 600px;
 	border: 1px solid #ddd;
+	 margin: 0 auto;
+	 margin-bottom:20px;
 }
 
 #chatHeader {
@@ -50,7 +52,7 @@
 }
 
 .myMsg>.msg {
-	background-color: #0084FF;
+	background-color: #f9a406;
 	color: #fff;
 }
 
@@ -83,5 +85,13 @@
 	border: none;
 	background: none;
 	color: #0084FF;
+	font-size: 17px;
+}
+
+#chatForm>input:hover[type=submit] {
+	outline: none;
+	border: none;
+	background: none;
+	color: #FF9800;
 	font-size: 17px;
 }

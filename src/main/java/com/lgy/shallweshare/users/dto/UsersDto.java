@@ -17,7 +17,6 @@ public class UsersDto {
 	 private String u_pwd;
 	 private String u_name;
 	 private String u_nickname;
-	 private Date u_birth;
 	 private String u_phoneNum;
 	 private String u_gender;
 	 private String u_email;

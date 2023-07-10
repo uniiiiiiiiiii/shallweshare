@@ -100,13 +100,13 @@ public class UsersController {
 		return usersService.nickChk(u_nickname);
 	}
 	
-//	회원수정에서 닉네임 중복 체크
-	@RequestMapping("nickModifyChk")
-	public @ResponseBody int nickModifyChk(HttpServletRequest request, @RequestParam HashMap<String, String> param){
-		HttpSession session = request.getSession();
-		param.put("u_id", String.valueOf(session.getAttribute("u_id")));
-		return usersService.nickModifyChk(param);
-	}
+////	회원수정에서 닉네임 중복 체크
+//	@RequestMapping("nickModifyChk")
+//	public @ResponseBody int nickModifyChk(HttpServletRequest request, @RequestParam HashMap<String, String> param){
+//		HttpSession session = request.getSession();
+//		param.put("u_id", String.valueOf(session.getAttribute("u_id")));
+//		return usersService.nickModifyChk(param);
+//	}
 	
 //		일반 유저 탈퇴
 	@RequestMapping("/userDel")
@@ -139,6 +139,7 @@ public class UsersController {
 		} else {
 			session.invalidate();
 			session.setAttribute("u_id", userInfo.getU_id());
+			session.setAttribute("u_nickname", userInfo.getU_nickname());
 			session.setAttribute("access_Token", access_Token);
 			return "redirect:../shop/list";
 		}

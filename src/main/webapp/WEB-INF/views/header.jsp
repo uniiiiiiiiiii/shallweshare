@@ -58,7 +58,7 @@
 											id="dropdownUser1" data-bs-toggle="dropdown"
 											aria-expanded="false"> <img
 											src="../resources/img/Teemo.jpg" alt="" width="50"
-											height="50" class="rounded-circle me-2"> ${sessionScope.u_nickname }님환영합니다
+											height="50" class="rounded-circle me-2"> ${sessionScope.u_nickname}님 환영합니다
 										</a>
 
 										<ul class="dropdown-menu dropdown-menu-dark text-small shadow"

@@ -12,12 +12,15 @@
 	height: 70px;
 	display: inline-block;
 	position: absolute;
-	top: 70%;
+	top: 60%;
 }
-
+.item-row-pmax{
+	border-bottom: 1px solid #efefef
+}
 .item-row-pTitle {
 	border-bottom: 1px solid #efefef;
 	position:relative;
+	padding-bottom:10px;
 }
 
 .platform-title {
@@ -52,17 +55,37 @@ img {
 	border-bottom: 1px solid #efefef
 }
 
+.item-row-pwd {
+	border-bottom: 1px solid #efefef
+}
 
 .item-row-pContent {
-	
+	border:solid 1px #eeeeee;
+	padding:30px;
+	width:100%;
+	background-color: #F5F5F5;
+	margin-bottom:50px;
 }
 
 .item-row-application-button {
+	text-align: center;
 }
 
+#userLink:link{
+	text-decoration:none;
+	color:black;
+}
+
+#userLink:hover{
+	text-decoration:none;
+	color:#FF9800;
+}
 .item-row-participant-list {
-	position: relative
+	position: relative;
+	height:250px;
 	padding: 25px 0;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 .item-row-participant-list .picture{
 	position: relative;

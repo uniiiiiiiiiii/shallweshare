@@ -2,7 +2,7 @@
 <script type="text/javascript">
 function deleteCheck() {
 	
-	var sessionU_id = '<%= session.getAttribute("u_id") %>';
+	var sessionU_id = '<%=session.getAttribute("u_id")%>';
 	var u_id = '${party.u_id}';
 	console.log("sessionU_id="+sessionU_id+","+"u_id="+u_id)
 	
@@ -20,9 +20,10 @@ function deleteCheck() {
 	    alert("파티장만 삭제할 수 있습니다.")
 	}
 }
+
 function modifyCheck() {
 	
-	var sessionU_id = '<%= session.getAttribute("u_id") %>';
+	var sessionU_id = '<%=session.getAttribute("u_id")%>';
 	var u_id = '${party.u_id}';
 	
 	if (sessionU_id === u_id) {
@@ -32,4 +33,26 @@ function modifyCheck() {
 	    alert("파티장만 수정할 수 있습니다.")
 	}
 }
+
+function backToList(){
+	  window.location='list?pageNum=${pageMaker.pageNum }&amount=${pageMaker.amount}';
+}
+
+function goApplication(){
+	if(<%=session.getAttribute("u_id")%> == null){
+		alert("로그인 후 신청 가능합니다.");
+	}else{
+		window.location="javascript:window.location='application?p_id=${party.p_id}'";
+	}
+}
+
+function goReport(){
+	if(<%=session.getAttribute("u_id")%> == null){
+		alert("로그인 후 신고 가능합니다.");
+	}else{
+		window.location="javascript:window.location='../report/write?p_id=${party.p_id}'";
+	}
+}
+
+
 </script>

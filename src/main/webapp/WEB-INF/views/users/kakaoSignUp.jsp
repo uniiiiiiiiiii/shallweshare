@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
 <!DOCTYPE html>
 <html>
-<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
+<title>카카오 추가 회원가입</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 	
+  <script type="text/javascript">
+$(document).ready(function(){
+	  $(".cencle").on("click", function(){
+		//			location.href = "../shop/list";
+		location.href = "../users/userSignIn";
+		})
+
 	var checkNickname="";
 		    $('.nick_already').css("display", "none");
 	       	$('.nick_ok').css("display", "none");
@@ -48,55 +55,164 @@
 			}
 			}) //submit
 	}); //end of ready
-	</script> 
-</head>
-<body>
-<table border="1" align="center">
-		<form method="post" action="kakaoSignUpOk" name="regform" id="kakaoRegisterForm">
-			<tr height="50">
-				<td colspan="2">
-					<h1>회원가입</h1>
-				</td>
-			</tr>
-			<tr height="30">
-				<td width="80">이메일</td>
-				<td>
-					<input type="text" size="20" name="u_email" placeholder="별명을 적어주세요." required>
-				</td>
-			</tr>
-			<tr height="30">
-				<td width="80">닉네임</td>
-				<td>
-					<input type="text" size="20" name="u_nickname" id="u_nickname" placeholder="별명을 적어주세요." required>
-						<span class="nick_ok">사용 가능한 닉네임입니다.</span>
-						<span class="nick_already">중복된 닉네임입니다.</span>				
-				</td>
-			</tr>
+</script> 
+<style>
 
-			<tr height="30">
-				<td width="80">폰번호</td>
-				<td>
-					<input type="text" size="12" name="u_phoneNum" required placeholder="'-'를 제외한 번호만 입력해주세요.">
-				</td>
-			</tr>
-			
-			<tr height="30">
-				<td width="80">
-					계좌번호
-				</td>
-				<td>
-					<input type="text" size="20" name="u_bank_account">
-				</td>
-			</tr>
-			
-			<input type ='hidden' name='u_id' value="${u_id}">
-			
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="가입하기">
-				</td>
-			</tr>
-		</form>
-	</table>
+.form-structor {
+    padding: 50px;
+    margin: 90px auto;
+	height: 570px;
+	width: 540px;
+    content: '';
+    top: 100px;
+    bottom: 100px;
+	background-color: #FDF5E6;   
+}
+
+.txt{
+  border-bottom: 2px solid #adadad;
+  margin-top: 10px;
+  width: 70%;
+  position: relative;
+  margin: 10px;
+  margin-left: 50px;
+  padding: 7px 10px;
+}
+
+
+/* 인풋 텍스트 */
+     .inputtxt1{
+        background-color: #FDF5E6;
+        border:0;
+        width: 100%;
+        padding: 2px;
+       
+        margin-top: 5px;
+        &:focus {
+        color: #b17505;
+       
+        outline: none;
+        font-size: 1em;
+        transition: .8s all ease;
+    &::placeholder {
+        opacity: 0;
+      } 
+    }
+    &:hover {
+          transition: all .3s ease;
+          background-color: #fffcf6;
+        }
+  } 
+
+     
+  .submit-btn {
+      height: 40px;
+        background-color: #FFA500;
+        color: rgba(256,256,256,0.7);
+        border:0;
+        border-radius: 8px;
+        display: block;
+        margin: 10px auto; 
+        margin-top: 40px;
+
+        padding: 5px 45px;
+        width: 77%;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .3s ease;
+
+        &:hover {
+          transition: all .3s ease;
+          background-color: #FFDBC1;
+        }
+      }
+    .cencle{
+      height: 30px;
+        background-color: #dec08a;
+        color: rgba(256,256,256,0.7);
+        border:0;
+        border-radius: 8px;
+        display: block;
+        margin: 7px auto; 
+        padding: 2px 45px;
+        width: 77%;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .3s ease;
+
+        &:hover {
+          transition: all .3s ease;
+          background-color: #FFDBC1;
+        }
+      }
+
+
+  
+  #signup{    
+     text-align: center;
+     margin-bottom: 40px;
+     color: #b17505;
+  }
+
+  .chk{
+    font-size: 5px;
+    color: #b17505;
+    padding-left: 55px;
+  }
+
+
+
+</style>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<%@ include file="../header.jsp" %>
+<body>
+
+<div class="form-structor" id="screen2">
+
+  <div class="signup">
+    <h2 class="form-title" id="signup">KAKAO Sign Up</h2>
+  </div>
+  <form method="post" action="kakaoSignUpOk" name="regform" id="kakaoRegisterForm">
+    <div class="form-holder">
+
+        <div class="txt">
+            <input class="inputtxt1" type="text" size="20" name="u_email" required placeholder="이메일">
+        </div>
+
+      <div class="txt">
+        <input class="inputtxt1" type="text" size="20" name="u_nickname" id="u_nickname" placeholder="닉네임" required>
+      </div>
+      <div class="chk">
+        <span class="nick_ok">사용 가능한 닉네임입니다.</span>
+        <span class="nick_already">중복된 닉네임입니다.</span>
+      </div>
+
+      <div class="txt">
+        <input class="inputtxt1" type="text" size="12" name="u_phoneNum" required placeholder="폰번호  ('-'를 제외한 번호만 입력해주세요.)">
+      </div>   
+
+      <div class="txt">
+        <input class="inputtxt1" type="text" size="20" name="u_bank_account" required placeholder="계좌번호">
+      </div>
+
+      <input type ='hidden' name='u_id' value="${u_id}">
+    </div>
+    
+    
+        <input type="submit" class="submit-btn" value="회원가입">
+        <input type="submit" value="취소" class="cencle">
+        
+</form>
+    </div>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>
