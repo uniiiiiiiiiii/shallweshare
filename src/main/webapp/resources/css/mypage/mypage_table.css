@@ -2,7 +2,6 @@
 
 table{
     border-radius: 20px;
-    margin-left: 40%;
     text-align:center;
     border-spacing: 15px;
      border-color: #FFBE0A;
@@ -16,7 +15,7 @@ td{
 }
 
 h2{
-    margin-left: 43%;
+   text-align:center;
 }
 .sidebar{
 	padding:30px;

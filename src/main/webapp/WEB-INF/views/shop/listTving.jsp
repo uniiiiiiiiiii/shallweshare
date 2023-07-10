@@ -81,7 +81,7 @@ display: inline-block;}
 						href="party_page?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount} &p_id=${getParty_list.p_id}"
 						class="btn btn-lg btn-light" style="width: 100%">
 						<h2>
-							<img src="../resources/img/${getParty_list.p_platform}Icon.png"
+							<img src="../resources/img/shop/${getParty_list.p_platform}Icon.png"
 								width="50px" height="50px"> ${getParty_list.p_platform}
 						</h2>
 						<p>${getParty_list.p_title}</p>
@@ -181,7 +181,7 @@ var u_id = <%=session.getAttribute("u_id")%>;
 	function loginCheck() {
 		console.log("@# u_id==>" + u_id);
 		if (u_id === null) {
-			alert("로그인 해라")
+			alert("로그인 하세요.")
 			
 		} else {
 			window.location = 'party_create?u_id=${user.getU_id()}';

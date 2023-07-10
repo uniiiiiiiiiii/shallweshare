@@ -32,4 +32,13 @@ function modifyCheck() {
 	    alert("파티장만 수정할 수 있습니다.")
 	}
 }
+
+function goApplication(){
+	var sessionU_id = <%= session.getAttribute("u_id") %>;
+	if (sessionU_id === null) {
+	    alert("로그인 후 신청할 수 있습니다.")
+	} else {
+	    window.location='application?p_id=${party.p_id}';
+	}
+}
 </script>

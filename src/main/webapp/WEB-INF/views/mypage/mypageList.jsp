@@ -1,50 +1,115 @@
-<%@ page pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>sidebar</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon"
+	href="../resources/assets/favicon.ico" />
+<!-- Custom Google font-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+	rel="stylesheet" />
+<!-- Bootstrap icons-->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+         -->
+<!-- Core theme CSS (includes Bootstrap)-->
+<!-- <link href="../resources/css/styles.css" rel="stylesheet" />
+ -->
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<% 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%
 	String session_u_id = String.valueOf(session.getAttribute("u_id"));
+String session_u_nickname = String.valueOf(session.getAttribute("u_nickname"));
 %>
 <script>
-	if(<%=session_u_id%>==null){
-	 	alert("로그인이 필요합니다.");
+	if (
+<%=session_u_id%>
+	== null) {
+		alert("로그인이 필요합니다.");
 		history.back();
 	}
-			
 </script>
-<style>@import'../resources/css/mypage/mypage_table.css'</style>
+<style>
+@import
+'../resources/css/mypage/mypage_table.css'
+</style>
 </head>
-<%@include file="../header.jsp"%>
-
 <body>
-<!-- 간격 주기 위해서 씀 -->
-<div class="tq"></div>
-<div class="tq"></div>
-	<div class="sidebar">
-		<ul>
-			<li><a class="mypagelist_a"
-				href="userModify?u_id=<%=session_u_id%>">회원 수정하기</a></li>
-			
-			<li><a class="mypagelist_b"
-				href="my_partyList?u_id=<%=session_u_id%>">내 파티 보기</a></li>
-			
-			<li><a class="mypagelist_c"
-				href="my_reportList?u_id=<%=session_u_id%>">내 신고내역</a></li>
-		
-			<li><a class="mypagelist_d"
-				href="writable-reviews?u_id=<%=session_u_id%>">작성 가능 후기</a></li>
-		
-			<li><a class="mypagelist_e"
-				href="written-reviews?u_id=<%=session_u_id%>">적은 후기 보기</a></li>
-		
-			<li><a class="mypagelist_f"
-				href="withdrawal?u_id=<%=session_u_id%>">회원 탈퇴</a></li>
-		</ul>
-	</div>
-<%@include file="../footer2.jsp"%>
+	
+		<!--       SideBar  -->
+		<div class="d-flex flex-column flex-shrink-0 p-5 text-white bg-dark"
+			style="width: 250px; height: 600px; margin-left: 16%; float: left;">
+			<div class="dropdown">
+				<a href="#"
+					class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+					id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+					<img src="../resources/img/eagle.png" alt="" width="50" height="50"
+					class="rounded-circle me-2"> <strong><%=session_u_nickname%>님</strong>
+				</a>
+
+				<ul class="dropdown-menu dropdown-menu-dark text-small shadow"
+					aria-labelledby="dropdownUser1" style="">
+					<li><a class="dropdown-item" href="#">프로필</a></li>
+					<li><a class="dropdown-item" href="#">결재내역</a></li>
+					<li><a class="dropdown-item" href="#"></a></li>
+					<li><hr class="dropdown-divider"></li>
+				</ul>
+			</div>
+			<a href="/"
+				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+				<svg class="bi me-2" width="40" height="32">
+					<use xlink:href="#bootstrap"></use></svg> <span class="fs-4"></span>
+			</a>
+
+			<hr>
+
+			<ul class="nav nav-pills flex-column mb-auto ">
+
+				<li><a href="userModify" class="nav-link text-white "> <svg
+							class="bi me-2" width="16" height="16">
+							<use xlink:href="../resources/img/NETFLIX.png"></use></svg> 회원 정보 수정
+				</a></li>
+
+				<li><a href="my_partyList" class="nav-link text-white"> <svg
+							class="bi me-2" width="16" height="16">
+							<use xlink:href="#table"></use></svg> 내 파티 보기
+				</a></li>
+
+				<li><a href="my_reportList" class="nav-link text-white"> <svg
+							class="bi me-2" width="16" height="16">
+							<use xlink:href="#grid"></use></svg> 내 신고 내역
+				</a></li>
+
+				<li><a href="writable-reviews" class="nav-link text-white">
+						<svg class="bi me-2" width="16" height="16">
+							<use xlink:href="#people-circle"></use></svg> 작성 가능 후기
+				</a></li>
+
+				<li><a href="written-reviews" class="nav-link text-white">
+						<svg class="bi me-2" width="16" height="16">
+							<use xlink:href="#people-circle"></use></svg> 적은 후기 보기
+				</a></li>
+				<li><a href="withdrawal" class="nav-link text-white"> <svg
+							class="bi me-2" width="16" height="16">
+							<use xlink:href="#people-circle"></use></svg> 회원 탈퇴
+				</a></li>
+
+			</ul>
+			<hr>
+		</div>
+	
 </body>
+
 </html>
