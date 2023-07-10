@@ -2,23 +2,18 @@
 
 table{
     border-radius: 20px;
-    margin-left: 40%;
+
     text-align:center;
     border-spacing: 15px;
     border-color: #FFBE0A;
     
 }
-h3{
-    margin-left: 40%;
-}
+
 tr{
     border:none;
 }
 td{
     border:none;
-}
-h1{
-	 margin-left: 42%;
 }
 
 

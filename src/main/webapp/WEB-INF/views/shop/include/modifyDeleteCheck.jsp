@@ -50,7 +50,7 @@ function goReport(){
 	if(<%=session.getAttribute("u_id")%> == null){
 		alert("로그인 후 신고 가능합니다.");
 	}else{
-		window.location="javascript:window.location='../report/write?p_id=${party.p_id}'";
+		window.open('../report/write?p_id=${party.p_id}', '_blank', 'width=650, height=720'); return false
 	}
 }
 
