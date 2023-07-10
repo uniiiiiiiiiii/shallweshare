@@ -24,7 +24,6 @@
 <!-- 간격 주기 위해서 씀 -->
 <div class="tq"></div>
 <div class="tq"></div>
-
 	<div class="sidebar">
 		<ul>
 			<li><a class="mypagelist_a"
@@ -46,6 +45,6 @@
 				href="withdrawal?u_id=<%=session_u_id%>">회원 탈퇴</a></li>
 		</ul>
 	</div>
-<%@include file="../footer.jsp"%>
+<%@include file="../footer2.jsp"%>
 </body>
 </html>

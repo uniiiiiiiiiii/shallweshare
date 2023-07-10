@@ -58,12 +58,6 @@ function goBack() {
 			<td>${users_view.u_email}</td>
 		</tr>
 	</table>
-		<h3>생일</h3>
-	<table width="500" border="1">
-		<tr>
-			<td>${users_view.u_birth}</td>
-		</tr>
-	</table>
 		<h3>계좌번호</h3>
 	<table width="500" border="1">
 		<tr>

@@ -34,7 +34,7 @@
 						<tr align="center" class="${status.count % 2 == 0 ? 'users-table' : 'odd-row'}">
 							<td>${dto.u_id}</td>
 							<td>
-								<a href="user_view?u_id=${dto.u_id}" onclick="window.open(this.href, '_blank', 'width=775, height=635'); return false;">${dto.u_nickname}</a>
+								<a href="user_view?u_id=${dto.u_id}" onclick="window.open(this.href, '_blank', 'width=540, height=1500'); return false;">${dto.u_nickname}</a>
 							</td>
 							<td>${dto.u_name}</td>
 							<td><fmt:formatDate value="${dto.u_created}" pattern="yyyy-MM-dd"/></td>
