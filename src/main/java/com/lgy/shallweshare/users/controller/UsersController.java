@@ -52,6 +52,7 @@ public class UsersController {
 			if (param.get("u_pwd").equals(dtos.get(0).getU_pwd())) {
 				session.setAttribute("u_id", dtos.get(0).getU_id());
 				session.setAttribute("u_nickname", dtos.get(0).getU_nickname());
+				session.setAttribute("u_role", dtos.get(0).getU_role());
 				session.setAttribute("u_sns_id", param.get("u_sns_id"));
 				
 				return "redirect:../shop/list";
@@ -141,6 +142,7 @@ public class UsersController {
 			session.setAttribute("u_id", userInfo.getU_id());
 			session.setAttribute("u_nickname", userInfo.getU_nickname());
 			session.setAttribute("access_Token", access_Token);
+			session.setAttribute("u_role", userInfo.getU_role());
 			return "redirect:../shop/list";
 		}
 	}
