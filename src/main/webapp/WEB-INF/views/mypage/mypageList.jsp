@@ -46,6 +46,6 @@
 				href="withdrawal?u_id=<%=session_u_id%>">회원 탈퇴</a></li>
 		</ul>
 	</div>
-
+<%@include file="../footer.jsp"%>
 </body>
 </html>
