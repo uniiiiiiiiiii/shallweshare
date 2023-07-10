@@ -36,7 +36,7 @@
 	            <td><input type="number" name="report_p_id" value="${report.p_id}"></td>
 	        </tr>
         </table>
-			<h3>신고 할 유저<h3>
+			<h3>신고 할 유저</h3>
 		<table width="500" border="1">
 			<tr>
 				<td><input type="number" name="report_u_id" value="${report.report_u_id}"></td>
@@ -52,7 +52,7 @@
 		<table width="500" border="1">
 			<tr>
 				<td>
-					<textarea style="resize: none;" name="report_content" id="review_content" placeholder="내용을 입력해주세요." cols="60" rows="20">${report.report_content}</textarea>
+					<textarea style="resize: none; border: none;" name="report_content" id="review_content" placeholder="내용을 입력해주세요." cols="60" rows="20">${report.report_content}</textarea>
 				</td>
 			</tr>
 			<caption align="bottom">

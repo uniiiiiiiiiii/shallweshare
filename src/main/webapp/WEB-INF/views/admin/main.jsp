@@ -1,58 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-</head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
-  div ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-      a{
-      text-decoration: none;
-    }
-  div ul li{
-    font-size: 1.5em;
-    padding-left: 7px;
-    margin-bottom: 15px;
-    border-left-style: solid;
-    border-left-color: #906;
-    border-left-width: 5px;
-    display: inline;
-  }
-  a{
-  	text-decoration: none;
-  	color : black;
-  }
-  .users:hover {
-  	color : red;
-    font-weight: 900;
-  }
-  .report:hover {
-  	color : red;
-    font-weight: 900;
-  }
-</style>
+<link rel="stylesheet" href="../resources/css/admin.css"/>        <link href="../resources/css/font.css" rel="stylesheet" />
+<link href="../resources/css/font.css" rel="stylesheet" />
+<%@include file="../header.jsp" %>
+</head>
 <body>
-	<h1 align="center"><a href="http://localhost:8181/shallweshare/admin/admain">관리자 페이지</a></h1>
+	<div align="center" class="admin-menu">
+	<h1 align="center"><a href="http://localhost:8181/shallweshare/admin/main">관리자 페이지</a></h1>
 	<hr>
-	<div align="center">
 		<ul>
-			<li><a class="users" href="#" onclick="changeIframeSrc('http://localhost:8181/shallweshare/admin/adUserInfo')">회원정보</a></li>
-			<li><a class="report" href="#" onclick="changeIframeSrc('http://localhost:8181/shallweshare/admin/adReport')">신고내역</a></li>
+			<li><a class="users" href="#" onclick="changeIframeSrc('http://localhost:8181/shallweshare/admin/adUserInfo', 'users')">회원정보</a></li>
+			<li><a class="report" href="#" onclick="changeIframeSrc('http://localhost:8181/shallweshare/admin/adReport', 'report')">신고내역</a></li>
 		</ul>
 	</div>
 	<div>
 		<iframe src="http://localhost:8181/shallweshare/admin/adUserInfo" id="iframe" width="95%" height="500"></iframe>
 	</div>
-		<script>
-		function changeIframeSrc(src) {
+	<script>
+		function changeIframeSrc(src, linkType) {
 			document.getElementById("iframe").src = src;
+			document.querySelectorAll("a.users, a.report").forEach(function(link) {
+				link.classList.remove("clicked");
+			});
+			document.querySelector("a." + linkType).classList.add("clicked");
 		}
 	</script>
 </body>
+<%@include file="../footer.jsp" %>
 </html>
