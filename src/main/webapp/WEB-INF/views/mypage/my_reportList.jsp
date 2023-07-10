@@ -23,8 +23,10 @@
 		<c:forEach items="${myReportList}" var="myReportList" varStatus="i">
 			<tr>
 				<td>${myReportList.report_id}</td>
+
 				<td>${myReportList.report_category}</a></td>
 				<td><a href="../report/report_view?report_id=${myReportList.report_id}" onclick="window.open(this.href, '_blank', 'width=620, height=950'); return false;">${myReportList.report_title}</a></td>
+
 				<td><fmt:formatDate value="${myPartyList.report_created}" pattern="yyyy-MM-dd" /></td>
 			</tr>
 		</c:forEach>

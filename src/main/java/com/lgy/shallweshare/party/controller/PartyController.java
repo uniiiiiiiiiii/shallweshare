@@ -178,7 +178,7 @@ public class PartyController {
 		int total = pService.getTotalCount();
 		log.info("@# total ====>"+total);
 		ArrayList<Integer> memberCountList = new ArrayList<Integer>();
-		for (int i = 0; i <cri.getAmount(); i++) {
+		for (int i = 0; i <partyList.size(); i++) {
 			memberCountList.add(pService.getMemberCount(partyList.get(i).getP_id()));
 		}
 		model.addAttribute("memberCount",memberCountList);
@@ -201,7 +201,7 @@ public class PartyController {
 		log.info("@# total ====>"+total);
 		if (total!=0) {
 			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
-			for (int i = 0; i <cri.getAmount(); i++) {
+			for (int i = 0; i <partyList.size(); i++) {
 				memberCountList.add(pService.getNetflixMemberCount(partyList.get(i).getP_id()));
 			}
 			model.addAttribute("memberCount",memberCountList);
@@ -228,7 +228,7 @@ public class PartyController {
 		if (total!=0) {
 			log.info("@# total ====>"+total);
 			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
-			for (int i = 0; i <cri.getAmount(); i++) {
+			for (int i = 0; i <partyList.size(); i++) {
 				memberCountList.add(pService.getWavveMemberCount(partyList.get(i).getP_id()));
 			}
 			model.addAttribute("memberCount",memberCountList);
@@ -253,8 +253,10 @@ public class PartyController {
 		if (total!=0) {
 			log.info("@# total ====>"+total);
 			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
-			for (int i = 0; i <cri.getAmount(); i++) {
+			for (int i = 0; i <partyList.size(); i++) {
+				if(partyList.get(i) !=null){
 				memberCountList.add(pService.getTivingMemberCount(partyList.get(i).getP_id()));
+				}
 			}
 			model.addAttribute("memberCount",memberCountList);
 			model.addAttribute("pageMaker", new PageDTO(total, cri));
@@ -278,7 +280,7 @@ public class PartyController {
 		if (total!=0) {
 			log.info("@# total ====>"+total);
 			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
-			for (int i = 0; i <cri.getAmount(); i++) {
+			for (int i = 0; i <partyList.size(); i++) {
 				memberCountList.add(pService.getDisneyMemberCount(partyList.get(i).getP_id()));
 			}
 			model.addAttribute("memberCount",memberCountList);
@@ -303,7 +305,7 @@ public class PartyController {
 		if (total!=0) {
 			log.info("@# total ====>"+total);
 			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
-			for (int i = 0; i <cri.getAmount(); i++) {
+			for (int i = 0; i <partyList.size(); i++) {
 				memberCountList.add(pService.getWatchaMemberCount(partyList.get(i).getP_id()));
 			}
 			model.addAttribute("memberCount",memberCountList);
