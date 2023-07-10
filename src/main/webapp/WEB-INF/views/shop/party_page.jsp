@@ -21,37 +21,12 @@
 		<form method="post" action="*">
 			<div class="width-container">
 				<div class="item-row-pTitle">
-					<c:choose>
-						<c:when test="${ party.p_platform eq 'netflix'}">
+				
+						
 							<div class="icon">
-								<img src="../resources/img/shop/netflixIcon.png" alt>
+								<img src="../resources/img/shop/${party.p_platform}Icon.png"Icon.png" alt>
 							</div>
-
-						</c:when>
-						<c:when test="${ party.p_platform eq 'watcha'}">
-							<div class="icon">
-								<img src="../resources/img/shop/watchaIcon.png" alt>
-							</div>
-						</c:when>
-
-						<c:when test="${ party.p_platform eq 'disney'}">
-							<div class="icon">
-								<img src="../resources/img/shop/disneyIcon.png" alt>
-							</div>
-						</c:when>
-
-						<c:when test="${ party.p_platform eq 'tving'}">
-							<div class="icon">
-								<img src="../resources/img/shop/tvingIcon.png" alt>
-							</div>
-						</c:when>
-
-						<c:when test="${ party.p_platform eq 'wavve'}">
-							<div class="icon">
-								<img src="../resources/img/shop/wavveIcon.png" alt>
-							</div>
-						</c:when>
-					</c:choose>
+					
 					<div class="platform-title">
 						<span class="text">${party.p_platform}</span>
 						<div class="p_title">

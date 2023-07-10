@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set value="${party.p_max-fn:length(participant_list)}" var = "a"/>
- 
+<c:set value="${party.p_max-fn:length(participant_list)}" var="a" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,8 @@
 <link href="../resources/css/styles.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shop/chatRoom.css" />
-	
-	<script>
+
+<script>
 	$("#chatLog").scrollTop($("#chatLog")[0].scrollHeight);
 </script>
 </head>
@@ -28,45 +28,19 @@
 	<section>
 		<div class="width-container">
 			<div class="item-row-pTitle">
-					<c:choose>
-						<c:when test="${ party.p_platform eq 'netflix'}">
-							<div class="icon">
-								<img src="../resources/img/shop/netflixIcon.png" alt>
-							</div>
-
-						</c:when>
-						<c:when test="${ party.p_platform eq 'watcha'}">
-							<div class="icon">
-								<img src="../resources/img/shop/watchaIcon.png" alt>
-							</div>
-						</c:when>
-
-						<c:when test="${ party.p_platform eq 'disney'}">
-							<div class="icon">
-								<img src="../resources/img/shop/disneyIcon.png" alt>
-							</div>
-						</c:when>
-
-						<c:when test="${ party.p_platform eq 'tving'}">
-							<div class="icon">
-								<img src="../resources/img/shop/tvingIcon.png" alt>
-							</div>
-						</c:when>
-
-						<c:when test="${ party.p_platform eq 'wavve'}">
-							<div class="icon">
-								<img src="../resources/img/shop/wavveIcon.png" alt>
-							</div>
-						</c:when>
-					</c:choose>
-					<div class="platform-title">
-						<span class="text">${party.p_platform}</span>
-						<div class="p_title">
-							<strong>${party.p_title}</strong>
-						</div>
-						<!-- end of item-row-pTitle  -->
-					</div>
+				<div class="icon">
+					<img src="../resources/img/shop/${party.p_platform}Icon.png"
+						Icon.png" alt>
 				</div>
+
+				<div class="platform-title">
+					<span class="text">${party.p_platform}</span>
+					<div class="p_title">
+						<strong>${party.p_title}</strong>
+					</div>
+					<!-- end of item-row-pTitle  -->
+				</div>
+			</div>
 			<div class="item-row-master">
 				<div style="display: inline-block;">
 					<strong>파티장 </strong>
@@ -83,23 +57,29 @@
 						<span>탈퇴한 회원</span>
 					</c:otherwise>
 				</c:choose>
-			</div> <!-- end of item row master  -->
+			</div>
+			<!-- end of item row master  -->
 			<div class="item-row-pid">
 				<span><strong>파티번호 </strong>${party.p_id}</span>
-			</div> <!-- end of item-row-pid  -->
+			</div>
+			<!-- end of item-row-pid  -->
 			<div class="item-row-pmax">
 				<span><strong>파티인원 </strong>${fn:length(participant_list)}/${party.p_max}</span>
-			</div> <!-- end of item-row-pid  -->
+			</div>
+			<!-- end of item-row-pid  -->
 			<div class="item-row-pid">
 				<span><strong>파티기간 </strong> <fmt:formatDate
 						value="${party.p_finish_date}" pattern="yyyy-MM-dd" /> 까지</span>
-			</div> <!-- end of item row pid  -->
+			</div>
+			<!-- end of item row pid  -->
 			<div class="item-row-id">
 				<span><strong>플랫폼 ID </strong>${party.p_platform_id}</span>
-			</div> <!-- end of item-row-pid  -->
+			</div>
+			<!-- end of item-row-pid  -->
 			<div class="item-row-pwd">
 				<span><strong>플랫폼 PW </strong>${party.p_platform_password}</span>
-			</div> <!-- end of item-row-pid  -->
+			</div>
+			<!-- end of item-row-pid  -->
 			<div class="item-row-participant-list">
 				<c:choose>
 					<c:when test="${fn:length(participant_list) eq 0}">
@@ -149,10 +129,12 @@
 						</ul>
 					</c:otherwise>
 				</c:choose>
-			</div> <!-- end of participant-list   -->
+			</div>
+			<!-- end of participant-list   -->
 			<div class="item-row-pContent ">
 				<div>${party.p_content}</div>
-			</div> <!-- end of pContent  -->
+			</div>
+			<!-- end of pContent  -->
 			<!--            	채팅방              -->
 			<div id="chatWrap">
 				<div id="chatHeader">채팅방</div>
@@ -184,18 +166,20 @@
 					</c:forEach>
 				</div>
 				<form id="chatForm" method="post" action="insertChat">
-					<input type="hidden" name="p_id" value="${party.p_id}"> 
-					<input type="hidden" name="u_id" value=<%=session.getAttribute("u_id")%>>
+					<input type="hidden" name="p_id" value="${party.p_id}"> <input
+						type="hidden" name="u_id" value=<%=session.getAttribute("u_id")%>>
 					<input type="text" autocomplete="off" size="30" id="message"
-						placeholder="메시지를 입력하세요" name="p_board_content">
-				<input type="submit" value="보내기">
+						placeholder="메시지를 입력하세요" name="p_board_content"> <input
+						type="submit" value="보내기">
 				</form>
-			</div> <!-- end of chat-wrap  -->
+			</div>
+			<!-- end of chat-wrap  -->
 
 			<div class="item-row-application-button ">
 
 
-				<input type="button" value="목록" onclick="history.back()" class="btn btn-light">
+				<input type="button" value="목록" onclick="history.back()"
+					class="btn btn-light">
 				<c:if test="${sessionScope.u_id eq party.u_id}">
 					<input type="button" value="삭제" onclick="deleteCheck()"
 						class="btn btn-light">
@@ -204,8 +188,10 @@
 				</c:if>
 
 
-			</div> <!-- item-row-application-button  -->
-		</div><!-- end of width-container  -->
+			</div>
+			<!-- item-row-application-button  -->
+		</div>
+		<!-- end of width-container  -->
 	</section>
 	<footer>
 		<%@ include file="../footer.jsp"%>

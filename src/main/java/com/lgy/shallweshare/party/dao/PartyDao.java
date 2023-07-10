@@ -38,6 +38,12 @@ public interface PartyDao {
 	public int getTivingCount();
 	public int getDisneyCount();
 	public int getWatchaCount();
+	public int getMemberCount(int p_id);
+	public int getDisneyMemberCount(int p_id);
+	public int getNetflixMemberCount(int p_id);
+	public int getTivingMemberCount(int p_id);
+	public int getWatchaMemberCount(int p_id);
+	public int getWavveMemberCount(int p_id);
 	
 	
 	public PartyDto content_view(HashMap<String, String> param);

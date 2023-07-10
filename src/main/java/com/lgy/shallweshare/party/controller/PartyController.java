@@ -173,11 +173,15 @@ public class PartyController {
 		log.info("@@@@@@####### list");
 		log.info("@# cri ====>"+cri);
 		
-		model.addAttribute("getParty_list", pService.getParty_list(cri));
+		ArrayList<PartyDto> partyList  =  pService.getParty_list(cri);
+		model.addAttribute("getParty_list", partyList);
 		int total = pService.getTotalCount();
 		log.info("@# total ====>"+total);
-		
-//		rttr.addAttribute("user", dto);
+		ArrayList<Integer> memberCountList = new ArrayList<Integer>();
+		for (int i = 0; i <cri.getAmount(); i++) {
+			memberCountList.add(pService.getMemberCount(partyList.get(i).getP_id()));
+		}
+		model.addAttribute("memberCount",memberCountList);
 		model.addAttribute("pageMaker", new PageDTO(total, cri));
 		
 		return "shop/list";
@@ -191,14 +195,23 @@ public class PartyController {
 		log.info("@@@@@@####### listNetflix");
 		log.info("@# cri ====>"+cri);
 		
-		
-		model.addAttribute("getParty_list", pService.getParty_listNetflix(cri));
+		ArrayList<PartyDto> partyList  =  pService.getParty_listNetflix(cri);
+		model.addAttribute("getParty_list", partyList);
 		int total = pService.getNetflixCount();
 		log.info("@# total ====>"+total);
-		
-		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		
-		return "shop/listNetflix";
+		if (total!=0) {
+			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
+			for (int i = 0; i <cri.getAmount(); i++) {
+				memberCountList.add(pService.getNetflixMemberCount(partyList.get(i).getP_id()));
+			}
+			model.addAttribute("memberCount",memberCountList);
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			
+			return "shop/listNetflix";
+		}else {
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listNetflix";
+		}
 	}
 	
 	@RequestMapping("shop/listWavve")
@@ -209,14 +222,22 @@ public class PartyController {
 		log.info("@@@@@@####### listWavve");
 		log.info("@# cri ====>"+cri);
 		
-		
-		model.addAttribute("getParty_list", pService.getParty_listWavve(cri));
+		ArrayList<PartyDto> partyList  =  pService.getParty_listWavve(cri);
+		model.addAttribute("getParty_list", partyList);
 		int total = pService.getWavveCount();
-		log.info("@# total ====>"+total);
-		
-		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		
-		return "shop/listWavve";
+		if (total!=0) {
+			log.info("@# total ====>"+total);
+			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
+			for (int i = 0; i <cri.getAmount(); i++) {
+				memberCountList.add(pService.getWavveMemberCount(partyList.get(i).getP_id()));
+			}
+			model.addAttribute("memberCount",memberCountList);
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listWavve";
+		}else {
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listWavve";
+		}
 	}
 	
 	@RequestMapping("shop/listTving")
@@ -226,11 +247,22 @@ public class PartyController {
 		response.setHeader("Expires", "0"); // Proxies
 		log.info("@@@@@@####### listTving");
 		log.info("@# cri ====>"+cri);
-		model.addAttribute("getParty_list", pService.getParty_listTving(cri));
+		ArrayList<PartyDto> partyList  =  pService.getParty_listTving(cri);
+		model.addAttribute("getParty_list", partyList);
 		int total = pService.getTivingCount();
-		log.info("@# total ====>"+total);
-		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		return "shop/listTving";
+		if (total!=0) {
+			log.info("@# total ====>"+total);
+			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
+			for (int i = 0; i <cri.getAmount(); i++) {
+				memberCountList.add(pService.getTivingMemberCount(partyList.get(i).getP_id()));
+			}
+			model.addAttribute("memberCount",memberCountList);
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listTving";
+		}else {
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listTving";
+		}
 	}
 	
 	@RequestMapping("shop/listDisney")
@@ -240,11 +272,22 @@ public class PartyController {
 		response.setHeader("Expires", "0"); // Proxies
 		log.info("@@@@@@####### listDisney");
 		log.info("@# cri ====>"+cri);
-		model.addAttribute("getParty_list", pService.getParty_listDisney(cri));
+		ArrayList<PartyDto> partyList  =  pService.getParty_listDisney(cri);
+		model.addAttribute("getParty_list", partyList);
 		int total = pService.getDisneyCount();
-		log.info("@# total ====>"+total);
-		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		return "shop/listDisney";
+		if (total!=0) {
+			log.info("@# total ====>"+total);
+			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
+			for (int i = 0; i <cri.getAmount(); i++) {
+				memberCountList.add(pService.getDisneyMemberCount(partyList.get(i).getP_id()));
+			}
+			model.addAttribute("memberCount",memberCountList);
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listDisney";
+		}else {
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listTving";
+		}
 	}
 	
 	@RequestMapping("shop/listWatcha")
@@ -254,11 +297,22 @@ public class PartyController {
 		response.setHeader("Expires", "0"); // Proxies
 		log.info("@@@@@@####### listWatcha");
 		log.info("@# cri ====>"+cri);
-		model.addAttribute("getParty_list", pService.getParty_listWatcha(cri));
+		ArrayList<PartyDto> partyList  =  pService.getParty_listWatcha(cri);
+		model.addAttribute("getParty_list", partyList);
 		int total = pService.getWatchaCount();
-		log.info("@# total ====>"+total);
-		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		return "shop/listWatcha";
+		if (total!=0) {
+			log.info("@# total ====>"+total);
+			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
+			for (int i = 0; i <cri.getAmount(); i++) {
+				memberCountList.add(pService.getWatchaMemberCount(partyList.get(i).getP_id()));
+			}
+			model.addAttribute("memberCount",memberCountList);
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listWatcha";
+		}else {
+			model.addAttribute("pageMaker", new PageDTO(total, cri));
+			return "shop/listTving";
+		}
 	}
 	
 

@@ -24,4 +24,5 @@ public class PartyDto {
 	  private String p_adult_password;
 	  private Date p_created; 
 	  private String p_deleted; 
+	  private int memberCount;
 }
