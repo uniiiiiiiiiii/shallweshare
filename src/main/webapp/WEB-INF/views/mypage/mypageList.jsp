@@ -28,7 +28,7 @@
 	<div class="sidebar">
 		<ul>
 			<li><a class="mypagelist_a"
-				href="edit_profile?u_id=<%=session_u_id%>">회원 수정하기</a></li>
+				href="userModify?u_id=<%=session_u_id%>">회원 수정하기</a></li>
 			
 			<li><a class="mypagelist_b"
 				href="my_partyList?u_id=<%=session_u_id%>">내 파티 보기</a></li>
