@@ -16,8 +16,7 @@
 		<%@ include file="../header.jsp"%>
 	</header>
 	<section>
-		<div class="justify-content-center">
-
+		<div class="width-container">
 			<div class="item-row-pTitle">
 				<div class="icon">
 					<img src="../resources/img/shop/netflixIcon.png" alt>
@@ -96,7 +95,14 @@
 
 					<input type="hidden" name="pageNum" value="${pageMaker.pageNum }">
 					<input type="hidden" name="amount" value="${pageMaker.amount }">
-					<input type="button" value="목록" formaction="list">
+					<c:choose>
+					<c:when test="${pageMaker.pageNum ne null}">
+						<input type="button" value="목록" formaction="list">
+					</c:when>
+					<c:otherwise>
+						<input type="button" value="목록" onclick="javascript:window.location='../shop/list'">					
+					</c:otherwise>
+					</c:choose>
 					<c:if test="${sessionScope.u_id eq party_u_id}">
 						<input type="button" value="삭제" onclick="deleteCheck()">
 						<input type="button" value="수정" onclick="modifyCheck()">
@@ -104,9 +110,6 @@
 					<input type="button" value="신고하기"
 						onclick="javascript:window.location='../report/write?p_id=${party.p_id}'">
 				</form>
-
-
-
 			</div>
 		</div>
 	</section>

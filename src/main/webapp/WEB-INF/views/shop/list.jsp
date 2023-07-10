@@ -119,41 +119,39 @@
 
 </body>
 </html>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 //파티만들기 이동시 로그인 확인
 
-	var u_id = '<%=session.getAttribute("u_id")%>
-	';
+	var u_id = '<%= session.getAttribute("u_id") %>';
 	function loginCheck() {
-		console.log("@# u_id==>" + u_id);
-		if (u_id === 'null') {
-			alert("로그인 해라")
-			window.location = 'login';
-		} else {
-			window.location = 'party_create?u_id=${user.getU_id()}';
+			  console.log("@# u_id==>"+u_id);
+		if (u_id==='null') {
+			  alert("로그인 해라")
+		 	window.location='login';
+		}else {
+			 	window.location='party_create?u_id=${user.getU_id()}';
 		}
 	}
-
-	// 	페이지번호 처리
-	var actionForm = $("#actionForm");
-	$(".paginate_button a").on("click", function(e) {
+	
+// 	페이지번호 처리
+	var actionForm =$("#actionForm");
+	$(".paginate_button a").on("click", function(e){
 		e.preventDefault();
-		console.log("@# href==>" + $(this).attr("href"));
+		console.log("@# href==>"+$(this).attr("href"));
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 	});
-
-	// 	게시글 처리
-	$(".move_link")
-			.on(
-					"click",
-					function(e) {
-						e.preventDefault();
-						var targetBno = $(this).attr("href");
-						actionForm
-								.append("<input type='hidden' name='p_id' value='"+targetBno+"'>")
-						actionForm.attr("action", "party_page").submit();
-					});
+	
+	
+	
+// 	게시글 처리
+	$(".move_link").on("click",function(e){
+		e.preventDefault();
+		var targetBno=$(this).attr("href");
+		actionForm.append("<input type='hidden' name='p_id' value='"+targetBno+"'>")
+		actionForm.attr("action", "party_page").submit();
+	});
+	
 </script>
+	
