@@ -38,7 +38,7 @@
                         <ul class="navbar-nav ms-0 ml-0 mb-lg-0 Large  fw-bolder">
 							<li class="nav-item"><a class="nav-link" href="../shop/list">모집/신청</a></li>
 							<li class="nav-item"><a class="nav-link " href="../mypage/">마이페이지</a></li>
-							<li class="nav-item"><a class="nav-link" href="../admin/">관리자페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="../admin/main">관리자페이지</a></li>
                         </ul>
                      
                   <ul class="navbar-nav ms-auto mb-2 mb-lg-0 Large  fw-bolder">
