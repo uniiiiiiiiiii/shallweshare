@@ -1,20 +1,24 @@
 @charset "UTF-8";
-
 table{
     border-radius: 20px;
-
     text-align:center;
     border-spacing: 15px;
     border-color: #FFBE0A;
-    
-}
 
+}
+h3{
+    margin-left: 1%;
+}
 tr{
     border:none;
 }
 td{
     border:none;
 }
-
-
-
+#cap-bottom{
+	caption-side: bottom;
+	text-align: center;
+}
+#review_content{
+	border: none;
+}

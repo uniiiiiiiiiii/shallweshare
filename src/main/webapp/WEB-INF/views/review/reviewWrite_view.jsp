@@ -7,7 +7,7 @@
 <link rel="stylesheet">
 <style>
 @import
-'../resources/css/table.css'
+'../resources/css/detailed-table.css'
 </style>
 <!-- <link href="/css/style.css" rel="stylesheet" type="text/css"> -->
 <script
