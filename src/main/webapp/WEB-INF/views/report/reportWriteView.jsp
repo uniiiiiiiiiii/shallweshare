@@ -8,7 +8,7 @@
 <title>신고 작성</title>
 <style>
 @import
-'../resources/css/table.css'
+'../resources/css/detailed-table.css'
 </style>
 </head>
 <body>

@@ -1,15 +1,13 @@
 @charset "UTF-8";
-
 table{
     border-radius: 20px;
-    margin-left: 40%;
     text-align:center;
     border-spacing: 15px;
     border-color: #FFBE0A;
-    
+
 }
 h3{
-    margin-left: 40%;
+    margin-left: 1%;
 }
 tr{
     border:none;
@@ -17,9 +15,10 @@ tr{
 td{
     border:none;
 }
-h1{
-	 margin-left: 42%;
+#cap-bottom{
+	caption-side: bottom;
+	text-align: center;
 }
-
-
-
+#review_content{
+	border: none;
+}

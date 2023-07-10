@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 @import
-'../resources/css/table.css'
+'../resources/css/detailed-table.css'
 </style>
 </head>
 <script>
