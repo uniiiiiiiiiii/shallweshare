@@ -58,7 +58,7 @@ display: inline-block;}
 				class="fw-bolder text-primary"> <img
 					src="../resources/img/WATCHA.jpg" width="170" height="60">
 			</span>
-			</a> <a class="navbar-brand ms-5" href="party_create"> <span
+			</a> <a class="navbar-brand ms-5" onclick="loginCheck()"> <span
 				class="fw-bolder text-primary">
 					<div class="btn btn-warning">파티만들기</div>
 			</span>
@@ -173,18 +173,16 @@ display: inline-block;}
 </body>
 </html>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
 //파티만들기 이동시 로그인 확인
-var u_id = '<%=session.getAttribute("u_id")%>
-	';
+var u_id = <%=session.getAttribute("u_id")%>;
 	function loginCheck() {
 		console.log("@# u_id==>" + u_id);
-		if (u_id === 'null') {
+		if (u_id === null) {
 			alert("로그인 해라")
-			window.location = 'login';
+			
 		} else {
 			window.location = 'party_create?u_id=${user.getU_id()}';
 		}
@@ -199,5 +197,7 @@ var u_id = '<%=session.getAttribute("u_id")%>
 		actionForm.submit();
 	});
 </script>
+
+
 
 
