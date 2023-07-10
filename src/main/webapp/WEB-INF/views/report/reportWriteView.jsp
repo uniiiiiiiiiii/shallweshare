@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +8,7 @@
 <title>신고 작성</title>
 <style>
 @import
+<<<<<<< HEAD
 '../resources/css/table.css';
 
 .width-container{
@@ -15,10 +16,12 @@
 	width:550px;
 	height:620px;
 }
+=======
+'../resources/css/table.css'
+>>>>>>> refs/remotes/origin/master
 </style>
 </head>
 <body>
-<div class="width-container">
 	<form method="post" name="rpt_frm" action="write_process">
 		<input type="hidden" name="u_id" value="${sessionScope.u_id}"> 
 
@@ -40,7 +43,7 @@
 	    <table width="500" border="1">
 			<tr>
 				<c:choose>
-					<c:when test="${empty param.p_id}" >
+					<c:when test="${empty param.p_id}">
 						<td><input type="number" name="report_p_id"></td>
 					</c:when>
 					<c:otherwise>
@@ -74,7 +77,9 @@
 			<h3>신고 내용</h3>
 		<table width="500" border="1">
 			<tr>
-				<td><textarea name="report_content"></textarea></td>
+				<td>
+                	<textarea style="resize: none;" placeholder="내용을 입력해주세요." cols="60" rows="20" name="report_content" id="report_content"></textarea>
+				</td>
 			</tr>
 			<caption align="bottom">
 					<br>
@@ -86,7 +91,6 @@
 					</button>
 			</caption>
 		</form>
-	</div>
 </body>
 <script type="text/javascript">
 	function reportCheck() {
@@ -107,9 +111,6 @@
 			rpt_frm.report_content.focus();
 			return;
 		}
-		alert("작성완료 되었습니다.");
 		document.rpt_frm.submit();
-		window.close();
 	}
 </script>
-</html>
