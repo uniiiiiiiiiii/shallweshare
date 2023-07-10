@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>shallweshare</title>
+<title>ShallweShare - Disney</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon"
 	href="../resources/assets/favicon.ico" />

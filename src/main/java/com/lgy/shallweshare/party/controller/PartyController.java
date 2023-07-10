@@ -253,8 +253,10 @@ public class PartyController {
 		if (total!=0) {
 			log.info("@# total ====>"+total);
 			ArrayList<Integer> memberCountList = new ArrayList<Integer>();
-			for (int i = 0; i <cri.getAmount(); i++) {
+			for (int i = 0; i <partyList.size(); i++) {
+				if(partyList.get(i) !=null){
 				memberCountList.add(pService.getTivingMemberCount(partyList.get(i).getP_id()));
+				}
 			}
 			model.addAttribute("memberCount",memberCountList);
 			model.addAttribute("pageMaker", new PageDTO(total, cri));
