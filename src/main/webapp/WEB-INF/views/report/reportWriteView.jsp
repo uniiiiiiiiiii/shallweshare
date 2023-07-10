@@ -8,7 +8,6 @@
 <title>신고 작성</title>
 <style>
 @import
-<<<<<<< HEAD
 '../resources/css/table.css';
 
 .width-container{
@@ -16,9 +15,7 @@
 	width:550px;
 	height:620px;
 }
-=======
-'../resources/css/table.css'
->>>>>>> refs/remotes/origin/master
+
 </style>
 </head>
 <body>
