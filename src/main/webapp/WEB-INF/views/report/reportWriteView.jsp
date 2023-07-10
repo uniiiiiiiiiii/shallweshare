@@ -8,10 +8,17 @@
 <title>신고 작성</title>
 <style>
 @import
-'../resources/css/table.css'
+'../resources/css/table.css';
+
+.width-container{
+	margin-left:0 auto;
+	width:550px;
+	height:620px;
+}
 </style>
 </head>
 <body>
+<div class="width-container">
 	<form method="post" name="rpt_frm" action="write_process">
 		<input type="hidden" name="u_id" value="${sessionScope.u_id}"> 
 
@@ -79,6 +86,7 @@
 					</button>
 			</caption>
 		</form>
+	</div>
 </body>
 <script type="text/javascript">
 	function reportCheck() {
@@ -99,7 +107,9 @@
 			rpt_frm.report_content.focus();
 			return;
 		}
+		alert("작성완료 되었습니다.");
 		document.rpt_frm.submit();
+		window.close();
 	}
 </script>
 </html>
