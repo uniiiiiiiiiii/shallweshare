@@ -24,6 +24,46 @@
 		where p_id =
 		#{p_id,jdbcType = VARCHAR}
 	</select>
+	
+	<select id="getMemberCount" parameterType="int"
+		resultType="int">
+		select count(*) from application where p_id= #{p_id,jdbcType =VARCHAR}
+	</select>
+	<select id="getDisneyMemberCount" parameterType="int"
+		resultType="int">
+		 <![CDATA[
+			SELECT COUNT(*)FROM application WHERE p_id IN (SELECT p_id FROM party WHERE p_platform = 'disney')
+ 			AND p_id = #{p_id,jdbcType =VARCHAR}
+		]]>
+	</select>
+	<select id="getNetflixMemberCount" parameterType="int"
+		resultType="int">
+		 <![CDATA[
+			SELECT COUNT(*)FROM application WHERE p_id IN (SELECT p_id FROM party WHERE p_platform = 'netflix')
+ 			AND p_id = #{p_id,jdbcType =VARCHAR}
+		]]>
+	</select>
+	<select id="getTivingMemberCount" parameterType="int"
+		resultType="int">
+		 <![CDATA[
+			SELECT COUNT(*)FROM application WHERE p_id IN (SELECT p_id FROM party WHERE p_platform = 'tiving')
+ 			AND p_id = #{p_id,jdbcType =VARCHAR}
+		]]>
+	</select>
+	<select id="getWatchaMemberCount" parameterType="int"
+		resultType="int">
+		 <![CDATA[
+			SELECT COUNT(*)FROM application WHERE p_id IN (SELECT p_id FROM party WHERE p_platform = 'watcha')
+ 			AND p_id = #{p_id,jdbcType =VARCHAR}
+		]]>
+	</select>
+	<select id="getWavveMemberCount" parameterType="int"
+		resultType="int">
+		 <![CDATA[
+			SELECT COUNT(*)FROM application WHERE p_id IN (SELECT p_id FROM party WHERE p_platform = 'wavve')
+ 			AND p_id = #{p_id,jdbcType =VARCHAR}
+		]]>
+	</select>
 
 	<insert id="application_process" parameterType="hashmap">
 		insert into
@@ -34,7 +74,7 @@
 		#{a_completed},'F')
 	</insert>
 
-
+	
 	<insert id="createParty" parameterType="hashmap">
 		insert into
 		PARTY

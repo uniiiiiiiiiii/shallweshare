@@ -22,7 +22,7 @@
 </head>
 <body>
 	      <!-- About Section-->
-            <section class="bg-light py-2 fixed-bottom">
+            <section class="bg-light py-2">
                 <div class="container px-2" >
                     <div class="row gx-2 justify-content-center ">
                         <div class="col-sm-8 h-5">

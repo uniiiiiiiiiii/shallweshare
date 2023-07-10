@@ -22,6 +22,40 @@ public class PartyServiceImpl implements PartyService{
 	private SqlSession sqlSession;
 	
 	@Override
+	public int getMemberCount(int p_id) {
+		PartyDao dao = sqlSession.getMapper(PartyDao.class);
+		
+		return dao.getMemberCount(p_id);
+	}
+	@Override
+	public int getDisneyMemberCount(int p_id) {
+		PartyDao dao = sqlSession.getMapper(PartyDao.class);
+		
+		return dao.getDisneyMemberCount(p_id);
+	}
+	@Override
+	public int getNetflixMemberCount(int p_id) {
+		PartyDao dao = sqlSession.getMapper(PartyDao.class);
+		
+		return dao.getNetflixMemberCount(p_id);
+	}
+	@Override
+	public int getTivingMemberCount(int p_id) {
+		PartyDao dao = sqlSession.getMapper(PartyDao.class);
+		
+		return dao.getTivingMemberCount(p_id);
+	}
+	@Override
+	public int getWatchaMemberCount(int p_id) {
+		PartyDao dao = sqlSession.getMapper(PartyDao.class);
+		return dao.getWatchaMemberCount(p_id);
+	}
+	@Override
+	public int getWavveMemberCount(int p_id) {
+		PartyDao dao = sqlSession.getMapper(PartyDao.class);
+		return dao.getWavveMemberCount(p_id);
+	}
+	@Override
 	public ArrayList<Party_boardDto> getParty_board(HashMap<String, String> param) {
 		log.info("@# Service: getParty_board");
 		// TODO Auto-generated method stub
