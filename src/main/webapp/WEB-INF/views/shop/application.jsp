@@ -90,7 +90,7 @@
 
 			}else{
 				var actionForm =$("#pay_form");
-				const a_completed = $("<input type='hidden' value='T' name='a_completed'>");
+				const a_completed = $("<input type='hidden' value='F' name='a_completed'>");
 				actionForm.append(a_completed);
 				console.log(actionForm);
 				actionForm.find("input[name='p_id']").val($(this).attr("href"));

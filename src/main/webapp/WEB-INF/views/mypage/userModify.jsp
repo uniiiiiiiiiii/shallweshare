@@ -88,10 +88,12 @@
 				</tr>
 				<tr height="30">
 					<td width="80">닉네임</td>
-					<td><input type="text" size="20" name="u_nickname"
+					<td>
+						<input type="text" size="20" name="u_nickname"
 						id="u_nickname" value="${usersInfo.u_nickname}" required>
-						<span class="nick_ok">사용 가능한 닉네임입니다.</span> <span
-						class="nick_already">중복된 닉네임입니다.</span></td>
+						<span class="nick_ok">사용 가능한 닉네임입니다.</span>
+						<span class="nick_already">중복된 닉네임입니다.</span>
+					</td>
 				</tr>
 
 				<tr height="30">

@@ -81,7 +81,8 @@ display: inline-block;}
 						href="party_page?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount} &p_id=${getParty_list.p_id}"
 						class="btn btn-lg btn-light" style="width: 100%">
 						<h2>
-							<img src="../resources/img/${getParty_list.p_platform}Icon.png"
+							<img src="../resources/img/${getParty_list.p_platform}Icon.png">
+							<img src="../resources/img/shop/${getParty_list.p_platform}Icon.png"
 								width="50px" height="50px"> ${getParty_list.p_platform}
 						</h2>
 						<p>${getParty_list.p_title}</p>
@@ -139,6 +140,7 @@ display: inline-block;}
 		<nav aria-label="Page navigation example">
 			<ul
 				class="pagination pagination-lg justify-content-center bg-dark mt-5">
+				class="pagination pagination-lg justify-content-center mt-5">
 				<c:if test="${pageMaker.prev}">
 					<li class="page-item"><a class="page-link"
 						href="${pageMaker.startPage - 1}" aria-label="Previous"> <span
@@ -173,8 +175,7 @@ display: inline-block;}
 </body>
 </html>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
 //파티만들기 이동시 로그인 확인
