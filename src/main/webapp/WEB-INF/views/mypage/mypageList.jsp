@@ -55,7 +55,7 @@ String session_u_nickname = String.valueOf(session.getAttribute("u_nickname"));
 				<a href="#"
 					class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
 					id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-					<img src="../resources/img/eagle.png" alt="" width="50" height="50"
+					<img src="../resources/img/shop/emptyUserIcon.png" alt="" width="50" height="50"
 					class="rounded-circle me-2"> <strong><%=session_u_nickname%>님</strong>
 				</a>
 

@@ -119,7 +119,7 @@
 				<div class="item-row-application-button ">
 
 					<c:choose>
-						<c:when test="${ fn:length(participant_list)+1 < party.p_max}">
+						<c:when test="${ fn:length(participant_list) < party.p_max}">
 							<c:if test="${sessionScope.u_id ne party.u_id}">
 								<input type="button" value="신청하기" onclick="goApplication()"
 									class="btn btn-warning">
@@ -127,7 +127,7 @@
 						</c:when>
 
 						<c:otherwise>
-							<span>파티 모집이 완료되었습니다.</span>
+							<span><h2><strong>파티 모집이 완료되었습니다.</strong></h2></span>
 							<br />
 						</c:otherwise>
 					</c:choose>

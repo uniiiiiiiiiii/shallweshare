@@ -65,7 +65,6 @@ display: inline-block;}
 			</a>
 		</div>
 	</nav>
-	<hr>
 
 	<!--             파티방 -->
 	<div class="container d-flex justify-content-center" id="hanging-icons">
@@ -138,7 +137,7 @@ display: inline-block;}
 	<div>
 		<nav aria-label="Page navigation example">
 			<ul
-				class="pagination pagination-lg justify-content-center bg-dark mt-5">
+				class="pagination pagination-lg justify-content-center mt-5">
 				<c:if test="${pageMaker.prev}">
 					<li class="page-item"><a class="page-link"
 						href="${pageMaker.startPage - 1}" aria-label="Previous"> <span

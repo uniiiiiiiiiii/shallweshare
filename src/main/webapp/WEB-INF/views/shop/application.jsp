@@ -7,45 +7,94 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+ 		table { 
+ 			border-radius: 25px;
+ 			border: 1px solid #FFCA28;
+ 			margin-left:auto; 
+ 			margin-right:auto; 
+			border-left:0;border-right:0;border-bottom:0;border-top:0;
+			text-align: center;
+ 			width : 400px; 
+ 		} 
+
+ 		tr, td { 
+ 			border: 1px solid #FFCA28;
+ 			border-radius: 25px;
+ 			padding : 10px; 
+ 			margin : 5px;  
+		  }		  
+
+         h2 {padding-left:0%;
+         	text-align: center;}
+         .a {text-align: center;}
+
+/* 		버튼 호버 색상 */
+  		 .test_btn1{
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+            border: 1px solid #FFCC80;
+            background-color: rgba(0,0,0,0);
+            color: #FFCC80;
+            padding: 5px;
+            text-align: center;
+			display :inline-block;
+        }
+        .test_btn1:hover{
+            color:white;
+            background-color: #FFCC80;
+        }					
+</style>
+
+<!-- 	<link href="../resources/css/font.css" rel="stylesheet" /> -->
 </head>
 <body>
-	<table width="500" border="1">
+<%@include file="../header.jsp"%>
+
+	<table>
 		<form id="pay_form" method="post" action="application_process">
-			<%=session.getAttribute("u_id")%>
 			<input type="hidden" name="p_id" value="${party.p_id}"> 
 			<input type="hidden" name="a_price" value="${party.p_price}"> 
 			<input type="hidden" name="u_id" value=<%=session.getAttribute("u_id")%>>
 			<input type="hidden" name="p_title" value="${party.p_title}">
-			<tr>
-				<td>파티 번호</td>
-				<td>${party.p_id}</td>
-			</tr>
-			<tr>
-				<td>파티 제목</td>
-				<td>${party.p_title}</td>
-			</tr>
-			<tr>
-				<td>결제 금액</td>
-				<td>${party.p_price}</td>
-			</tr>
-
-			<tr>
-				<td>결제 방법 선택</td>
-				<td><label><input type="radio" name="a_payment" value="카카오페이">카카오페이
-					</label> <label><input type="radio" name="a_payment" value="무통장입금">무통장입금</label></td>
-			</tr>
-			<tr>
-				<button id="pay">신청하기</button>
-			</tr>
+			<h2>파티 번호</h2>
+			<table class="moveReview_list">
+				<tr>
+					<td>${party.p_id}</td>
+				</tr>
+			</table>
+			<h2>파티 제목</h2>
+			<table>
+				<tr>
+					<td>${party.p_title}</td>
+				</tr>
+			</table>
+			<h2>결제 금액</h2>
+			<table>
+				<tr>
+					<td>${party.p_price}</td>
+				</tr>
+			</table>
+			<h2>결제 방법 선택</h2>
+			<table>	
+				<tr>
+					<td><label><input type="radio" name="a_payment" value="카카오페이">카카오페이
+						</label> <label><input type="radio" name="a_payment" value="무통장입금">무통장입금</label></td>
+				</tr>
+			</table>
+			<br>
+			<div class="a">
+				<button id="pay" class="test_btn1">신청하기</button>
+			</div>
 		</form>
 	</table>
-</body>
-</html>
-
-
+<%@include file="../footer.jsp"%>
 
 </body>
 </html>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type='text/javascript'>

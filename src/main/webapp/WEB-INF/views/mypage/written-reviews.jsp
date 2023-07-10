@@ -26,27 +26,30 @@
 				<h2>작성한 리뷰</h2>
 				
 				<table width="700" border="1">
-				<tr>
-						<td>리뷰 번호</td>
-						<td>리뷰 만족도</td>
-						<td>리뷰 파티</td>
-						<td>수정/삭제</td>
-					</tr>
+				
 					<c:forEach items="${written}" var="written" varStatus="status">
-						<form method="post" action="../review/modify">
-							<input type="hidden" name="review_id"
-								value="${written.review_id}">
 							<tr>
-								<td>${written.review_satisfy}</td>
+								<c:choose>
+								<c:when test="${written.review_satisfy eq 'T'}">
+								<td><h4><strong>👍만족했어요</strong></h4></td>
+								</c:when>
+								<c:otherwise>
+								
+								<td><h4>👎별로예요</h4></td>
+								</c:otherwise>
+								</c:choose>
+								
 							</tr>
 							<tr>
-								<td>${partyInfo[status.index].p_title}</td>
+								<td><h5><strong>파티명 </strong></h5>${partyInfo[status.index].p_title}</td>
 							</tr>
 							<tr>
-								<td>${written.review_content}</td>
+								<td><h5><strong>작성 내용</strong></h5>
+								${written.review_content}</td>
 							</tr>
 							<tr>
-								<td><input type="submit" value="수정"> <input
+								<td><input type="button" value="수정" 
+								onclick="javascript:window.location='../review/modify?review_id=${written.review_id}'"> <input
 									type="button" value="삭제" onclick="deleteCheck()"></td>
 								<script>
 									function deleteCheck() {

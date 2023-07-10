@@ -41,4 +41,13 @@ function goApplication(){
 	    window.location='application?p_id=${party.p_id}';
 	}
 }
+
+function goReport(){
+	var sessionU_id = <%= session.getAttribute("u_id") %>;
+	if (sessionU_id === null) {
+	    alert("로그인 후 신고할 수 있습니다.");
+	} else {
+	    window.location='../report/write?p_id=${party.p_id}';
+	}
+}
 </script>

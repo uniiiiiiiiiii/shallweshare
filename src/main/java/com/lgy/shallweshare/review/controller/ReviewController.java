@@ -82,9 +82,9 @@ public class ReviewController {
 		ReviewDto dto = reviewService.getReviewInfo(param.get("review_id"));
 		model.addAttribute("review", dto);
 		
+		
 		UsersDto master  = usersService.getUserInfo(Integer.parseInt(dto.getReview_u_id()));
 		model.addAttribute("master",master);
-		
 		PartyDto party = partyService.getPartyInfo(dto.getP_id());
 		model.addAttribute("party",party);
 		return "review/reviewModifyView";
