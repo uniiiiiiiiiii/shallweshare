@@ -43,7 +43,7 @@ public class ReportController {
 		String u_id = String.valueOf(session.getAttribute("u_id"));
 		param.put("u_id",u_id);
 	}
-	
+	/** 신고 쓰기 메소드 **/
 	@RequestMapping("/write_process")
 	public String write(@RequestParam HashMap<String, String> param,HttpServletRequest request) {
 		HttpSession session = request.getSession();
