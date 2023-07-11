@@ -36,7 +36,7 @@ display: inline-block;}
 
 
 	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-light ">
 		<div class="container px-10 p-0">
 			<a class="navbar-brand m-0 ms-5" href="listNetflix"> <span
 				class="fw-bolder text-primary m"> <img
@@ -77,7 +77,7 @@ display: inline-block;}
 			<div class=" border border-3 border-warning m-3 p-0 rounded ">
 				<div class="col-xs d-flex justify-content-center ">
 					<a
-						href="party_page?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount} &p_id=${getParty_list.p_id}"
+						href="party_page?platfrom=wavve&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount} &p_id=${getParty_list.p_id}"
 						class="btn btn-lg btn-light" style="width: 100%">
 						<h2>
 							<img src="../resources/img/shop/${getParty_list.p_platform}Icon.png"
@@ -162,6 +162,8 @@ display: inline-block;}
 	<form method="get" action="#" id="actionForm">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="platform" value="wavve">
+		
 	</form>
 	<form method="post" action="#" id="actionForm">
 		<input type="hidden" name="u_id" value="${user.getU_id()}">

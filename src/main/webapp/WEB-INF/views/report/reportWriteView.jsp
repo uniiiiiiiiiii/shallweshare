@@ -19,6 +19,7 @@
 </style>
 </head>
 <body>
+
 	<form method="post" name="rpt_frm" action="write_process">
 		<input type="hidden" name="u_id" value="${sessionScope.u_id}"> 
 

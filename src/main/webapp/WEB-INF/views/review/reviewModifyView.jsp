@@ -6,9 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet">
+
 <style>
+@import '../resources/css/style.css';
 @import
-'../resources/css/style.css'
+'../resources/css/detailed-table.css';	
+.width-container{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	max-width: 720px;
+	height: 100%;
+	margin: 0 auto;
+}
+h3{
+	text-align:center;
+}
+
+h2{
+	text-align:center;
+}
 </style>
 <!-- <link href="/css/style.css" rel="stylesheet" type="text/css"> -->
 <script
@@ -23,7 +39,7 @@
 
 			return false;
 		} else {
-			if (review_content[0].value.length > 500) {
+			if (review_content[0].value.length > 700) {
 				alert('줄여서 적어주세요.');
 				return false;
 			}
@@ -49,47 +65,53 @@
 </script>
 </head>
 <body>
+	<header>
+		<%@include file="../header.jsp"%>
+	</header>
+	<div class="width-container">
 	<form id="frm" method="post" action="modify_process">
-		<table width="500" border="1">
-			<input type="hidden" name="review_id" value="${review.review_id}"> 
+        <input type="hidden" name="review_id" value="${review.review_id}"> 
 			<input type="hidden" name="review_u_id" value="${review.review_u_id}"> 
-			
-			<tr>
-				<td>작성 대상 파티</td>
-				<td>${party.p_title}</td>
-			</tr>
-			<tr>
-			
-				<td class="a">파티장</td>
-				<c:if test="${master ne null }">
-				<td>${master.u_nickname}</td>
-				</c:if>
-			</tr>
-
-			<tr>
-				<td>선택</td>
-				<td>
-					<label><input type="radio" name="review_satisfy" value="T">만족했어요</label> 
+        <h3>작성 대상 파티</h3>
+		<table width="700" border="1">
+            <tr>
+                <td>${party.p_title}</td>
+            </tr>
+        </table>
+        <h3>파티장</h3>
+        <table width="700" border="1">
+            <tr>
+                <td>${master.u_nickname}</td>
+            </tr>
+        </table>
+        <h3>만족도</h3>
+        <table width="700" border="1">
+            <tr>
+                <td>
+                    <label><input type="radio" name="review_satisfy" value="T">만족했어요</label> 
 					<label><input type="radio" name="review_satisfy" value="F">별로예요</label>
-				</td>
+                </td>
+			</tr>            
+        </table>
+        <h3>내용</h3>
+        <table width="700" border="1">
+            <tr>
+                <td>
+                	<textarea style="resize: none;" placeholder="내용을 입력해주세요." cols="60" rows="20" name="review_content" id="review_content"></textarea>
+                </td> 
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td><textarea rows="20" cols="90%" name="review_content"
-						id="review_content" value="${review.review_content}"></textarea></td>
-			</tr>
-
-			<tr>
-				<td colspan="2">
-					<input type="button" onclick="fn_submit()" value="입력"> &nbsp;&nbsp; 
-					<a href="../mypage/written-reviews?u_id=${sessionScope.u_id}">목록보기</a>
-				</td>
-			</tr>
-		</table>
-
-
-	</form>
+       			    <td><input type="button" onclick="fn_submit()" value="입력"> &nbsp;&nbsp; 
+       	 		  	<a href="../mypage/writable-reviews">목록보기</a></td>
+       		</tr>
+        </table>
+    </form>
+    </div>
+	 <footer>
+		<%@include file="../footer.jsp"%>
+	</footer>
 </body>
+</div>
 </html>
 <script type='text/javascript'>
 if(${review.review_satisfy eq 'T'}){

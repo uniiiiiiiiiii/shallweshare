@@ -146,9 +146,9 @@
  } 
 .form-structor {
     padding: 50px;
-    margin: 90px auto;
+    margin: 40px auto;
     margin-botton: 150px;
-	height: 770px;
+	height: 730px;
 	width: 540px;
     content: '';
     top: 100px;

@@ -43,7 +43,7 @@
 								<td>${writable.p_title}</td>
 								<td>${writable.a_payment}<br /> ${writable.a_price}
 								</td>
-								<td><input type="submit" value="리뷰 작성"></td>
+								<td><input type="submit" value="리뷰 작성" ></td>
 							</tr>
 						</form>
 					</c:forEach>

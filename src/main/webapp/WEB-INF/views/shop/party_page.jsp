@@ -137,7 +137,7 @@
 					<c:choose>
 						<c:when test="${pageMaker.pageNum ne null}">
 							<input type="button" value="목록" 
-							onclick="javascript:window.location='../shop/list?pageNum=${pageMaker.pageNum }&amount=${pageMaker.amount }'"
+							onclick="javascript:window.location='../shop/list${param.platform}?pageNum=${pageMaker.pageNum }&amount=${pageMaker.amount }'"
 								class="btn btn-light">
 						</c:when>
 						<c:otherwise>

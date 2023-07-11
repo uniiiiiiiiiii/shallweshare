@@ -5,84 +5,116 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-		table{
-			margin : auto;
-		    // 가로 넓이도 지정해주면 좋습니다.
-		    width : 80%;
-		}
-		td {
-			text-align: center;
-		}
-		select{
-			width: 25%; 
-			text-align: center;
-		}
+<style>
+@import
+'../resources/css/detailed-table.css';	
+.width-container{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	max-width: 720px;
+	height: 100%;
+	margin: 0 auto;
+}
+h3{
+	text-align:center;
+}
+
+h2{
+	text-align:center;
+}
 </style>
 </head>
 <body>
-<table width="500" border="1">
-		<form method="post" action="party_createProcess">
-			<input type="hidden" name="u_id" value=<%= session.getAttribute("u_id") %>>
+	<header>
+		<%@include file="../header.jsp"%>
+	</header>
+	<section>
+	
+	<div class="width-container">
+	<div><h2><strong> <<파티 생성>> </strong></h2></div>
+	<form method="post" action="party_createProcess">
+		<input type="hidden" name="u_id" value=<%= session.getAttribute("u_id") %>>
+			<h3>파티 플랫폼</h3>
+		<table width="700" border="1">
+			<tr>
+				<td>
+					<label><input type="radio" name="p_platform" value="netflix">넷플릭스</label>			
+					<label><input type="radio" name="p_platform" value="wavve">웨이브</label>			
+					<label><input type="radio" name="p_platform" value="tving">티빙</label>			
+					<label><input type="radio" name="p_platform" value="watcha">왓챠</label>			
+					<label><input type="radio" name="p_platform" value="disney">디즈니플러스</label>
+				</td>			
+			</tr>
+		</table>
+			<h3>파티 인원</h3>
+		<table width="700" border="1">
+			<tr>
+				<td><input type="number" name="p_max" min="0" max="3"></td>
+			</tr>
+		</table>
+			<h3>파티 제목</h3>
+		<table width="700" border="1">
+			<tr>
+				<td><input type="text" name="p_title" ></td>
+			</tr>
+		</table>
+			<h3>파티 끝나는 기간</h3>
+		<table width="700" border="1">
+			<tr>
+				<td><input type="date" name="p_finish_date"></td>
+			</tr>
+		</table>
+			<h3>파티 가격</h3>
+		<table width="700" border="1">
+			<tr>
+				<td><input type="text" name="p_price"></td>
+			</tr>
+		</table>
+			<h3>플랫폼 아이디</h3>
+		<table width="700" border="1">
 		<tr>
-			<td>파티 플랫폼</td>
-			<td>
-				<label><input type="radio" name="p_platform" value="netfliex">넷플릭스</label>			
-				<label><input type="radio" name="p_platform" value="wavve">웨이브</label>			
-				<label><input type="radio" name="p_platform" value="tving">티빙</label>			
-				<label><input type="radio" name="p_platform" value="watcha">왓챠</label>			
-				<label><input type="radio" name="p_platform" value="disney">디즈니플러스</label>			
-			</td>
-		</tr>
-		<tr>
-			<td>파티 인원</td>
-			<td><input type="number" name="p_max" min="0" max="3"></td>
-		</tr>
-		<tr>
-			<td>파티 제목</td>
-			<td><input type="text" name="p_title" ></td>
-		</tr>
-		<tr>
-			<td>파티 끝나는 기간</td>
-			<td><input type="date" name="p_finish_date"></td>
-		</tr>
-		<tr>
-			<td>파티 가격</td>
-			<td><input type="text" name="p_price"></td>
-		</tr>
-		<tr>
-			<td>플랫폼 아이디</td>
 			<td><input type="text" name="p_platform_id"></td>
 		</tr>
+		</table>
+			<h3>플랫폼 비밀번호</h3>
+		<table width="700" border="1">
 		<tr>
-			<td>플랫폼 비밀번호</td>
 			<td><input type="text" name="p_platform_password"></td>
 		</tr>
-		<tr>
-			<td>플랫폼 성인인증</td>
-			<td>
-				<label><input type="radio" name="p_adult" value="N" checked="checked">N</label>	
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label><input type="radio" name="p_adult" value="Y">Y</label>
-			</td>		
-		</tr>
-		<tr>
-			<td>플랫폼 성인인증 번호</td>
-			<td><input type="text" name="p_adult_password"></td>
-		</tr>
-		<tr>
-			<td>자유 입력</td>
-			<td> <textarea rows="20" cols="60" name="p_content"></textarea> </td>
-		</tr>
-		<tr>
-			<td colspan="2">
+		</table>
+			<h3>플랫폼 성인인증</h3>
+		<table width="700" border="1">
+			<tr>
+				<td>
+					<label><input type="radio" name="p_adult" value="N" checked="checked">N</label>	
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label><input type="radio" name="p_adult" value="Y">Y</label>
+				</td>		
+			</tr>
+		</table>
+			<h3>플랫폼 성인인증 번호</h3>
+		<table width="700" border="1">
+			<tr>
+				<td><input type="text" name="p_adult_password"></td>
+			</tr>
+		</table>
+			<h3>자유 입력</h3>
+		<table width="700" border="1">
+			<tr>
+				<td> <textarea style="resize: none; border: none;"  rows="20" cols="60" name="p_content"></textarea> </td>
+			</tr>
+			<caption align="bottom" class="cap-bottom">
+				<br>
 				<input type="button" value="생성" onclick="Validation()">
 				<input type="button" value="취소" onclick="goList()">
-			</td>
-		</tr>
-		</form>
-	</table>
-
+			</caption>
+		</table>
+	</form>
+	</div>
+	</section>
+	<footer>
+	<%@include file="../footer.jsp"%>
+	</footer>
 </body>
 </html>
 
