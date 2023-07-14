@@ -35,6 +35,7 @@ https://www.notion.so/5-e841d441028e4dcfb61e2b5d752b629c
 
 
 **로그인 & 회원가입 페이지**
+
 회원가입 시 아이디와 닉네임은 중복이 불가능하도록 했다. (ajax 이용)
 ![image](https://github.com/uniiiiiiiiiii/shallweshare/assets/136671618/3a8c9952-0661-4aa7-ab0e-6c6db5421638)
 ![image](https://github.com/uniiiiiiiiiii/shallweshare/assets/136671618/a753f1ac-239b-4497-9a82-72a7983311ff)
@@ -42,12 +43,14 @@ https://www.notion.so/5-e841d441028e4dcfb61e2b5d752b629c
 
 
 **카카오 로그인 & 추가 회원가입 페이지**
+
 카카오 첫 로그인 시 동의하기 창을 클릭하면 동의한 정보들이 DB에 들어간다. 이때 pk 값인 회원번호가 같이 DB에 들어간다. 또한 다른 정보들을 추가로 받아야 해서 DB에 다른 정보 값이 없다면 pk 값을 가지고 추가 가입 페이지로 이동하게 된다.
 ![image](https://github.com/uniiiiiiiiiii/shallweshare/assets/136671618/d5868372-8bd5-4d9a-986c-cd02c7effdee)
 ![image](https://github.com/uniiiiiiiiiii/shallweshare/assets/136671618/01978491-4317-4fb2-8ae4-9b29554a883e)
 
 
 **회원수정 & 로그아웃 & 회원탈퇴**
+
 카카오 회원은 비밀번호 컬럼이 null이라서 회원 수정 jsp 페이지에서 플랫폼 컬럼이 일반 회원일 때만 비밀번호가 나오도록 했다. 아이디와 닉네임은 중복 불가이므로 기존의 sql 문을 약간 수정해서 사용했다. (닉네임이 입력된 닉네임이면서, 회원번호가 세션에 담긴 회원번호와 일치하지 않은 것의 개수)
 
 또한 카카오/일반 회원의 회원 수정, 로그아웃, 회원 탈퇴 로직이 다 달라서 컨트롤러에서 플랫폼 값에 따라 분기 처리를 해주었다.
